@@ -95,7 +95,7 @@ h1, h3 {
 .footer {
     background: #404042;
     color: white;
-    padding: 10px 0px;
+    padding: 10px 15px;
 }
 
 
@@ -190,6 +190,6 @@ h1, h3 {
     }
 
     .LI-badge-container.vertical.light .LI-profile-pic {
-        left: 30px !important;
+        left: 37px !important;
     }
 }
