@@ -131,11 +131,11 @@ h1, h3 {
 
 .LI-badge-container.vertical.light {
     min-width: 150px !important;
-    max-width: 174px !important;
+    width: auto !important;
 }
 
 .LI-badge-container.vertical.light .LI-profile-pic {
-    left: 25px !important;
+    left: 30px !important;
 }
 
 
@@ -147,6 +147,15 @@ h1, h3 {
     .cards {
         grid-template-columns: 1fr;
     }
+
+
+    .LI-badge-container.vertical.light {
+        width: 336px !important;
+    }
+    
+    .LI-badge-container.vertical.light .LI-profile-pic {
+        left: 118px !important;
+    }
 }
 
 @media (min-width: 700px) {
@@ -156,6 +165,15 @@ h1, h3 {
     .cards {
         grid-template-columns: 1fr 1fr;
     }
+
+
+    .LI-badge-container.vertical.light {
+        width: 228px !important;
+    }
+    
+    .LI-badge-container.vertical.light .LI-profile-pic {
+        left: 64px !important;
+    }
 }
 
 @media (min-width: 1000px) {
@@ -164,5 +182,14 @@ h1, h3 {
     }
     .cards {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+
+    .LI-badge-container.vertical.light {
+        width: 174px !important;
+    }
+
+    .LI-badge-container.vertical.light .LI-profile-pic {
+        left: 30px !important;
     }
 }
