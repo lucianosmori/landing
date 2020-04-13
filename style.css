@@ -129,6 +129,15 @@ h1, h3 {
     max-height: 20px;
 }
 
+.LI-badge-container.vertical.light {
+    min-width: 150px !important;
+    max-width: 174px !important;
+}
+
+.LI-badge-container.vertical.light .LI-profile-pic {
+    left: 25px !important;
+}
+
 
 /* Medias */  
 @media (min-width: 300px) {
