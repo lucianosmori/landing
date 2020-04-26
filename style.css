@@ -62,8 +62,10 @@ h1, h3 {
     transition: .3s;
     font-size: 20px;
     font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border-radius: 50px 50px 50px 50px;
 }
-
+    
 .btn-blue:hover {
     background-color: #0D1EC6;
     color: white;
