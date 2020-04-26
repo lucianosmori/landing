@@ -122,6 +122,15 @@ h1, h3 {
     text-decoration: none;
 }
 
+#widget_logo {
+    position: absolute;
+    top: 16px;
+    left: 15px!important;
+    transition: all .3s ease;
+    opacity: 1;
+    width: 28px;
+}
+
 
 /* Footer */
 
