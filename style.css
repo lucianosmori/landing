@@ -46,7 +46,7 @@ h1, h3 {
 
 /* Main */
 .container {
-    width: 900px;
+    width: 1200px;
     margin: 60px auto;
 }
 
@@ -76,7 +76,128 @@ h1, h3 {
 .cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 16px;
+    grid-gap: 20px;
+    align-items: start;
+}
+
+/* Certifications */
+.certifications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px 0;
+    justify-content: center;
+}
+
+.cert-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+    flex: 0 0 auto;
+}
+
+.cert-badge {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.cert-badge:hover {
+    transform: translateY(-8px) scale(1.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: translateY(-8px) scale(1.15); }
+    50% { transform: translateY(-8px) scale(1.25); }
+    100% { transform: translateY(-8px) scale(1.15); }
+}
+
+.cert-badge.aws {
+    background: linear-gradient(135deg, #FF9900, #FF6600);
+}
+
+.cert-badge.aws:hover {
+    background: linear-gradient(135deg, #FFB84D, #FF8533);
+    box-shadow: 0 8px 25px rgba(255, 153, 0, 0.4);
+}
+
+.cert-badge.azure {
+    background: linear-gradient(135deg, #0078D4, #005A9E);
+}
+
+.cert-badge.azure:hover {
+    background: linear-gradient(135deg, #1E88E5, #1976D2);
+    box-shadow: 0 8px 25px rgba(0, 120, 212, 0.4);
+}
+
+.cert-badge.gcp {
+    background: linear-gradient(135deg, #4285F4, #1A73E8);
+}
+
+.cert-badge.gcp:hover {
+    background: linear-gradient(135deg, #5C95F5, #4285F4);
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.4);
+}
+
+.cert-badge.github {
+    background: linear-gradient(135deg, #24292e, #586069);
+}
+
+.cert-badge.github:hover {
+    background: linear-gradient(135deg, #2F363D, #6A737D);
+    box-shadow: 0 8px 25px rgba(36, 41, 46, 0.4);
+}
+
+.cert-badge.ibm {
+    background: linear-gradient(135deg, #0062FF, #003DA5);
+}
+
+.cert-badge.ibm:hover {
+    background: linear-gradient(135deg, #1A75FF, #0052CC);
+    box-shadow: 0 8px 25px rgba(0, 98, 255, 0.4);
+}
+
+.cert-badge.more {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cert-badge.more:hover {
+    background: linear-gradient(135deg, #7A8288, #5A6268);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+}
+
+.cert-item span {
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 90px;
+}
+
+.cert-link {
+    text-decoration: none;
+    display: block;
+}
+
+.cert-link:hover .cert-badge {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .card-white{
@@ -85,6 +206,7 @@ h1, h3 {
     padding: 24px;
     margin: 8px;
     flex-grow: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-white img {
@@ -98,19 +220,92 @@ h1, h3 {
     margin-bottom: 0;
 }
 
+.card-white p {
+    margin-bottom: 0;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: contents;
+}
+
+.card-link:hover .card-white {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Black Hat card specific styling */
+.card-link .card-white {
+    position: relative;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.card-link:hover .card-white {
+    border-color: #01e675;
+}
+
+.card-link .card-white::after {
+    content: "🔗";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.card-link:hover .card-white::after {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.card-link .card-white h3::after {
+    content: " →";
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.card-link:hover .card-white h3::after {
+    opacity: 1;
+}
+
+.click-hint {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #01e675;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.card-link:hover .click-hint {
+    opacity: 1;
+}
+
+/* LinkedIn card specific positioning */
+.card-white:has(.LI-profile-badge) {
+    justify-content: center;
+}
+
 /* WA */
 #floating_button_sirena.right {
     right: 20px;
     max-width: 300px;    
-    background: #ffffff!important;
+    background: linear-gradient(135deg, #0077b5, #005885) !important;
     color: #fff;
     overflow: hidden;
     transition: all .4s ease-out;
     min-width: 60px;
     height: 60px;
-    border-radius: 60px;
+    border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16);
+    box-shadow: 0 4px 20px rgba(0, 119, 181, 0.3), 0 8px 32px rgba(0, 119, 181, 0.2);
     position: fixed;
     bottom: 20px;
     z-index: 9999;
@@ -120,15 +315,30 @@ h1, h3 {
     font: normal normal 100% 'Helvetica Neue',Helvetica,Arial,sans-serif;
     text-align-last: auto;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#floating_button_sirena.right:hover {
+    transform: translateY(-8px) scale(1.15);
+    box-shadow: 0 12px 35px rgba(0, 119, 181, 0.6), 0 20px 50px rgba(0, 119, 181, 0.4);
+    background: linear-gradient(135deg, #005885, #003d5c) !important;
+}
+
+#floating_button_sirena.right:hover #widget_logo {
+    transform: scale(1.1) rotate(5deg);
 }
 
 #widget_logo {
-    position: absolute;
-    top: 16px;
-    left: 15px!important;
+    position: relative;
+    top: 0;
+    left: 0 !important;
     transition: all .3s ease;
     opacity: 1;
-    width: 28px;
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
 }
 
 
@@ -158,27 +368,116 @@ h1, h3 {
 
 /* Fixes */
 .LI-badge-container.vertical.light .LI-name a {
-    font-size: 22px;
-    font-weight: normal;
+    font-size: 20px;
+    font-weight: 600;
     line-height: 24px;
-    color: #434649;
-    color: rgba(0,0,0,0.7);
+    color: #333;
     text-decoration: none;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.LI-badge-container.vertical.light .LI-name a:hover {
+    color: #0077b5;
 }
 
 .LI-badge-container.vertical.light .LI-icon {
-    width: 92px;
-    max-height: 20px;
+    width: 60px;
+    height: 60px;
+    max-height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0077b5, #005885);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px auto;
+    box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+    transition: all 0.3s ease;
+}
+
+.LI-badge-container.vertical.light .LI-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 119, 181, 0.4);
+}
+
+.LI-badge-container.vertical.light .LI-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
 }
 
 .LI-badge-container.vertical.light {
-    min-width: 150px !important;
-    width: auto !important;
+    min-width: 200px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    display: block !important;
+    text-align: center !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 .LI-badge-container.vertical.light .LI-profile-pic {
-    left: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-bottom: 12px !important;
 }
+
+/* LinkedIn card specific styling */
+.card-white:has(.LI-profile-badge) {
+    padding: 24px 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    flex-direction: column;
+}
+
+/* Fallback for browsers without :has() support */
+.card-white .LI-profile-badge {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LinkedIn fallback styling */
+.linkedin-fallback {
+    display: none !important;
+    text-align: center;
+    padding: 20px;
+}
+
+.linkedin-fallback .btn-blue {
+    pointer-events: none;
+}
+
+.LI-simple-link {
+    pointer-events: none;
+}
+
+.linkedin-fallback h3 {
+    margin-bottom: 10px;
+    color: #404042;
+    font-family: Chivo;
+}
+
+.linkedin-fallback p {
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.linkedin-fallback .btn-blue {
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+/* JavaScript will handle showing/hiding fallback */
 
 
 /* Medias */  
@@ -190,19 +489,43 @@ h1, h3 {
         grid-template-columns: 1fr;
     }
 
+    .certifications {
+        gap: 10px;
+    }
+
+    .cert-item {
+        min-width: 80px;
+    }
+
+    .cert-badge {
+        width: 55px;
+        height: 55px;
+        font-size: 12px;
+    }
+
+    .cert-item span {
+        font-size: 10px;
+        max-width: 70px;
+    }
+
+    .cert-badge.more {
+        font-size: 20px;
+    }
 
     .LI-badge-container.vertical.light {
-        width: 336px !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
     
     .LI-badge-container.vertical.light .LI-profile-pic {
-        left: 118px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 }
 
 @media (min-width: 700px) {
     .container {
-        width: 600px;
+        width: 800px;
     }
     .cards {
         grid-template-columns: 1fr 1fr;
@@ -210,17 +533,19 @@ h1, h3 {
 
 
     .LI-badge-container.vertical.light {
-        width: 228px !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
     
     .LI-badge-container.vertical.light .LI-profile-pic {
-        left: 64px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 }
 
 @media (min-width: 1000px) {
     .container {
-        width: 1000px;
+        width: 1200px;
     }
     .cards {
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -228,10 +553,12 @@ h1, h3 {
 
 
     .LI-badge-container.vertical.light {
-        width: 174px !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .LI-badge-container.vertical.light .LI-profile-pic {
-        left: 37px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 }
