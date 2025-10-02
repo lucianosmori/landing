@@ -44,9 +44,21 @@
       }
     }
     
+    // Hide the simple link text regardless
+    function hideSimpleLink() {
+      const simpleLink = document.querySelector('.LI-simple-link');
+      if (simpleLink) {
+        simpleLink.style.display = 'none';
+      }
+    }
+    
     // Check after LinkedIn script has time to load
+    setTimeout(checkLinkedInWidget, 1000);
+    setTimeout(hideSimpleLink, 1000);
     setTimeout(checkLinkedInWidget, 3000);
+    setTimeout(hideSimpleLink, 3000);
     setTimeout(checkLinkedInWidget, 6000);
+    setTimeout(hideSimpleLink, 6000);
   </script>
   <!-- Change these Google fonts with your own choice -->
   <link href="https://fonts.googleapis.com/css?family=Chivo:700|Overpass:400,700&amp;display=swap" rel="stylesheet">
