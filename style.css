@@ -40,8 +40,12 @@ h1, h3 {
 
 .banner p {
     color: white;
-    font-size: 24px;
-    opacity: 0.7;
+    font-size: 20px;
+    opacity: 0.9;
+    margin: 20px auto;
+    max-width: 800px;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 /* Main */

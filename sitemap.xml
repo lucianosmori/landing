@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://lucianomori.tech/</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://lucianomori.tech/images/blackhat.jpeg</image:loc>
+      <image:caption>Luciano Mori at Black Hat 2025 cybersecurity conference</image:caption>
+      <image:title>Black Hat 2025 Presentation</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://lucianomori.tech/images/cloud.jpg</image:loc>
+      <image:caption>Cloud computing architecture and infrastructure</image:caption>
+      <image:title>Cloud Architecture Solutions</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://lucianomori.tech/images/agentic-gen-ias.png</image:loc>
+      <image:caption>Artificial Intelligence and machine learning solutions</image:caption>
+      <image:title>AI and ML Solutions</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://lucianomori.tech/images/background.jpg</image:loc>
+      <image:caption>Professional software engineer background</image:caption>
+      <image:title>Luciano Mori Professional Background</image:title>
+    </image:image>
+  </url>
+</urlset>
