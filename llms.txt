@@ -18,6 +18,7 @@ Luciano Mori is a Software Engineer with expertise across Cloud Infrastructure, 
 - AWS Developer – Associate
 - Microsoft Azure Fundamentals
 - GitHub Actions
+- GitHub Copilot
 - Google Cloud Digital Leader
 - Google Cloud Generative AI Leader
 - IBM Application Developer
