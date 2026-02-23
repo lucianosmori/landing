@@ -1,0 +1,29 @@
+# Eng. Luciano Mori
+
+> Software Engineer specializing in Cloud, AI & Cybersecurity, based in Ottawa, Canada. Enabling software-based solutions through cloud and data-driven technologies.
+
+## About
+
+Luciano Mori is a Software Engineer with expertise across Cloud Infrastructure, Artificial Intelligence, and Cybersecurity/DevSecOps. He designs and deploys secure, scalable cloud workloads across AWS, Azure, GCP, and IBM Cloud, and builds intelligent AI applications from prototype to production with a focus on responsible AI practices. He has represented Snyk at Black Hat 2025, sharing approaches to securing AI-generated code from inception to production.
+
+## Core Capabilities
+
+- **Cloud & Training**: Designing and deploying secure, scalable cloud workloads across AWS, Azure, GCP, and IBM Cloud. Delivering cloud training sessions and workshops.
+- **AI Solutions**: Designing and deploying intelligent, secure AI applications. Bringing AI responsibly into cloud solutions from prototypes to production.
+- **DevSecOps**: Securing AI-generated code from inception to production. Represented Snyk at Black Hat 2025.
+
+## Certifications
+
+- AWS Solutions Architect – Associate
+- AWS Developer – Associate
+- Microsoft Azure Fundamentals
+- GitHub Actions
+- Google Cloud Digital Leader
+- Google Cloud Generative AI Leader
+- IBM Application Developer
+
+## Links
+
+- Website: https://lucianomori.cloud
+- LinkedIn: https://www.linkedin.com/in/lucianosmori/
+- Certifications: https://www.credly.com/users/lucianosmori
