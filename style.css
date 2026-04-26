@@ -354,9 +354,14 @@ body {
 @media (max-width: 980px) {
   .hero-inner { grid-template-columns: 1fr; gap: 48px; }
   .hero { padding: 64px 0 80px; }
-  /* On narrow viewports the masked ivory reveal sits in odd places —
-     just hide the bg photo in light mode (dark mode keeps it). */
-  [data-theme="light"] .hero::before { display: none; }
+  /* On narrow viewports, keep a faint top-right peek of the photo
+     in light mode — like dark mode shows it, just dialed way back. */
+  [data-theme="light"] .hero::before {
+    opacity: .18;
+    filter: saturate(1.2) contrast(.95) brightness(1.02);
+    mask-image: radial-gradient(ellipse 55% 30% at 90% 8%, black 25%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse 55% 30% at 90% 8%, black 25%, transparent 85%);
+  }
 }
 
 .hero-eyebrow {
