@@ -348,19 +348,32 @@
         paint(next);
       });
 
-      // Speedometer count-up for the cert counter (runs once on load).
+      // Speedometer count-up for the cert counter. Pulls the live total
+      // from Credly's public JSON; falls back to data-target if blocked.
       const counter = document.getElementById('certCount');
       if (counter) {
-        const target = parseInt(counter.dataset.target, 10) || 0;
-        const duration = 1600;
-        const start = performance.now();
-        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-        const tick = (now) => {
-          const t = Math.min(1, (now - start) / duration);
-          counter.textContent = Math.round(easeOut(t) * target);
-          if (t < 1) requestAnimationFrame(tick);
+        const fallback = parseInt(counter.dataset.target, 10) || 111;
+        const animate = (target) => {
+          const duration = 1600;
+          const start = performance.now();
+          const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+          const tick = (now) => {
+            const t = Math.min(1, (now - start) / duration);
+            counter.textContent = Math.round(easeOut(t) * target);
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
         };
-        requestAnimationFrame(tick);
+        const ctrl = new AbortController();
+        const timeout = setTimeout(() => ctrl.abort(), 3000);
+        fetch('https://www.credly.com/users/luciano-s-mori/badges.json', { signal: ctrl.signal })
+          .then(r => r.ok ? r.json() : Promise.reject())
+          .then(d => {
+            clearTimeout(timeout);
+            const n = d && d.metadata && d.metadata.total_count;
+            animate(Number.isFinite(n) && n > 0 ? n : fallback);
+          })
+          .catch(() => { clearTimeout(timeout); animate(fallback); });
       }
 
       // Hero "2025 @ Black Hat USA" → spotlight + scroll the featured card
