@@ -453,6 +453,7 @@ body {
 }
 .cloud-ico.cc-aws { background: #232f3e; }
 .cloud-ico svg { width: 32px; height: 32px; display: block; }
+.cloud-ico.cc-aws svg { width: 36px; height: auto; }
 .hero-meta-item:hover .cloud-ico:nth-child(1) { transform: translateY(-2px) rotate(-4deg); }
 .hero-meta-item:hover .cloud-ico:nth-child(2) { transform: translateY(-3px) rotate(2deg); transition-delay: .04s; }
 .hero-meta-item:hover .cloud-ico:nth-child(3) { transform: translateY(-2px) rotate(-2deg); transition-delay: .08s; }
