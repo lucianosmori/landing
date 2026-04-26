@@ -1,185 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <title>Eng. Luciano Mori - Software Solutions</title>
+  <meta charset="UTF-8"/>
+  <title>Eng. Luciano Mori — Sr. DevOps · Cloud, AI &amp; Security</title>
   <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <meta name="theme-color" content="#3f51b5"/>
-  <meta name="description" content="Engineering Software Solutions."/>
-  <meta name="p:domain_verify" content="578633e2574955aa59dff994f7544228"/>
+  <meta name="theme-color" content="#10b981"/>
+  <meta name="description" content="Sr. DevOps Engineer shipping cost-efficient AI workflows on secure cloud infrastructure across AWS, Azure, GCP & IBM."/>
   <meta property="og:url" content="https://lucianomori.tech"/>
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://raw.githubusercontent.com/lucianosmori/landing/f53f1849fe8a40dae051bd6a16c9721401f0f4bf/images/blackhat.jpeg" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://raw.githubusercontent.com/lucianosmori/landing/f53f1849fe8a40dae051bd6a16c9721401f0f4bf/images/blackhat.jpeg"/>
   <meta property="og:title" content="Eng. Luciano Mori"/>
-  <meta property="og:description" content="Software Engineer : Cloud, AI & Cybersecurity | Ottawa 🇨🇦 | Enabling software-based solutions by Cloud and Data-driven technologies." />
-  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-  <script>
-    // Fallback for LinkedIn widget
-    function checkLinkedInWidget() {
-      const linkedinWidget = document.querySelector('.LI-profile-badge');
-      const fallback = document.querySelector('.linkedin-fallback');
-      
-      if (linkedinWidget && fallback) {
-        // Check if LinkedIn widget is completely empty or has no meaningful content
-        const isEmpty = linkedinWidget.innerHTML.trim() === '' || 
-                       linkedinWidget.innerHTML.trim() === '<a class="LI-simple-link" href=\'https://ar.linkedin.com/in/lucianosmori/en?trk=profile-badge\'>Luciano S. Mori</a>';
-        
-        // Check if it has actual LinkedIn widget elements
-        const hasLinkedInElements = linkedinWidget.querySelector('.LI-name') || 
-                                  linkedinWidget.querySelector('.LI-profile-pic') ||
-                                  linkedinWidget.querySelector('.LI-icon') ||
-                                  linkedinWidget.querySelector('.LI-badge-container');
-        
-        if (isEmpty && !hasLinkedInElements) {
-          // LinkedIn widget failed to load or is blocked
-          linkedinWidget.style.display = 'none';
-          fallback.style.display = 'block';
-        } else {
-          // LinkedIn widget loaded successfully
-          linkedinWidget.style.display = 'block';
-          fallback.style.display = 'none';
-        }
-      }
-    }
-    
-    // Hide the simple link text regardless
-    function hideSimpleLink() {
-      const simpleLink = document.querySelector('.LI-simple-link');
-      if (simpleLink) {
-        simpleLink.style.display = 'none';
-      }
-    }
-    
-    // Check after LinkedIn script has time to load
-    setTimeout(checkLinkedInWidget, 1000);
-    setTimeout(hideSimpleLink, 1000);
-    setTimeout(checkLinkedInWidget, 3000);
-    setTimeout(hideSimpleLink, 3000);
-    setTimeout(checkLinkedInWidget, 6000);
-    setTimeout(hideSimpleLink, 6000);
-  </script>
-  <!-- Change these Google fonts with your own choice -->
-  <link href="https://fonts.googleapis.com/css?family=Chivo:700|Overpass:400,700&amp;display=swap" rel="stylesheet">
-  <!-- get style from https://fonts.google.com/ -->  
-  <link rel="stylesheet" href="style.css" rel="stylesheet">
+  <meta property="og:description" content="Sr. DevOps Engineer · Cloud, AI &amp; Security · Ottawa 🇨🇦"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <!-- Banner section -->
-  <div class="banner">
-    <h1>Eng. Luciano Mori</h1>
-    <h2>Software Engineer : Cloud, AI & Cybersecurity</h2>
-    <a href="https://www.linkedin.com/in/lucianosmori/" class="btn-blue">Connect on Linkedin!</a>
-  </div>
 
-  <!-- Cards section -->
-  <div class="container">
-    <h2>Tech capabilities</h2>
-
-    <!-- Cards container -->
-    <div class="cards">
-      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7359673931240255488/" target="_blank" class="card-link">
-        <div class="card-white z-depth-3">
-          <img src="images/blackhat.jpeg" alt="Black Hat 2025">
-          <h3>DevSecOps in Action</h3>
-          <p>Represented Snyk at <strong>#BlackHat</strong> 2025, sharing how we secure AI-generated code from inception to Production.</p>
-        </div>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark">LSM</span>
+        <span class="brand-name">Luciano Mori</span>
+        <span class="brand-slash">/</span>
+        <span class="brand-role">Sr. DevOps · Cloud · AI</span>
       </a>
-      
-      <div class="card-white z-depth-3">
-        <img src="images/cloud.jpg" alt="Cloud">
-        <h3>Cloud & Training</h3>
-        <p>Designed and deployed secure, scalable cloud workloads across AWS, Azure, GCP, and IBM Cloud. Delivered cloud training sessions and workshops.</p>     
+      <div class="nav-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#certs">Certifications</a>
       </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <a class="nav-cta" href="https://www.linkedin.com/in/lucianosmori/" target="_blank" rel="noreferrer">
+          Get in touch
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
 
-      <div class="card-white z-depth-3">
-        <img src="images/agentic-gen-ias.png" alt="AI Solutions">
-        <h3>AI Solutions</h3>
-        <p>Designing and deploying intelligent, secure AI applications. From prototypes to production, bringing AI responsibly into cloud solutions.</p>
-      </div>
-      
-      <!-- LI-profile -->
-      <a href="https://www.linkedin.com/in/lucianosmori/" target="_blank" class="card-link">
-        <div class="card-white z-depth-3">
-          <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="lucianosmori">
-            <a class="LI-simple-link" href='https://ar.linkedin.com/in/lucianosmori/en?trk=profile-badge'>Luciano S. Mori</a>
+  <!-- Hero -->
+  <header class="hero" id="top">
+    <div class="hero-grid-bg"></div>
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow"><span class="pulse"></span> Available for cloud &amp; AI engagements · Q2 2026</div>
+        <h1>
+          <span class="eng">Eng. Luciano Mori</span>
+          Cloud, AI &amp; Security<br/>built to scale.
+        </h1>
+        <p class="hero-tagline">
+          Sr. DevOps Engineer shipping <span class="glow">cost-efficient AI workflows</span> on secure cloud infrastructure.
+        </p>
+        <p class="hero-sub">
+          Architecting and deploying production AI agents, hardened CI/CD, and IaC across AWS, Azure &amp; GCP. Receipts on Credly to back it.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="https://www.linkedin.com/in/lucianosmori/" target="_blank" rel="noreferrer">
+            Connect on Linkedin!
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn-ghost" href="#capabilities">See capabilities</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-num">8+</span>
+            <span class="hero-meta-label">Cloud certifications</span>
           </div>
-          <div class="linkedin-fallback">
-            <h3>Luciano S. Mori</h3>
-            <p>Connect with me on LinkedIn</p>
-            <a href="https://www.linkedin.com/in/lucianosmori/" target="_blank" class="btn-blue">View Profile</a>
+          <div class="hero-meta-item">
+            <div class="cloud-icons" aria-label="AWS, Azure, and Google Cloud">
+              <span class="cloud-ico cc-aws" title="AWS">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M27.4 21.5c-3.3 2.4-8 3.7-12.1 3.7-5.7 0-10.9-2.1-14.8-5.6-.3-.3-.03-.65.34-.43 4.22 2.45 9.42 3.93 14.8 3.93 3.63 0 7.62-.75 11.3-2.3.55-.24 1.02.36.46.7Z" fill="#FF9900"/>
+                  <path d="M28.78 19.94c-.42-.54-2.78-.26-3.83-.13-.32.04-.37-.24-.08-.44 1.88-1.32 4.96-.94 5.32-.5.36.45-.1 3.55-1.86 5.03-.27.23-.52.1-.4-.19.4-.97 1.27-3.24.85-3.78Z" fill="#FF9900"/>
+                </svg>
+              </span>
+              <span class="cloud-ico cc-azure" title="Azure">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M11.6 3.2h7.95L11.3 27.4a1.27 1.27 0 0 1-1.2.86H3.92a1.27 1.27 0 0 1-1.2-1.68L10.4 4.06a1.27 1.27 0 0 1 1.2-.86Z" fill="#0078D4"/>
+                  <path d="M22.6 18.56H10.04a.58.58 0 0 0-.4 1.02l8.07 7.53c.24.22.55.35.86.35h7.13Z" fill="#3CCBF4"/>
+                  <path d="M19.55 3.2 14.36 18.5h7.69l1.68 4.85h6.85L21.46 4.06a1.27 1.27 0 0 0-1.2-.86Z" fill="#0078D4"/>
+                </svg>
+              </span>
+              <span class="cloud-ico cc-gcp" title="Google Cloud">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M19.7 11.95 22.4 9.25l.18-1.13A12 12 0 0 0 4.6 14.16c.57-.07 1.12-.07 1.66.05l5.4-.89s.27-.45.42-.42a6.66 6.66 0 0 1 9.12-1l-.05.05Z" fill="#EA4335"/>
+                  <path d="M27.62 14.16a12 12 0 0 0-3.6-5.83l-3.74 3.74a6.6 6.6 0 0 1 2.43 5.27v.66a3.3 3.3 0 1 1 0 6.61h-6.62l-.66.66v3.97l.66.66h6.62a8.65 8.65 0 0 0 4.92-15.74Z" fill="#4285F4"/>
+                  <path d="M9.5 30.5h6.6v-5.22H9.5a3.3 3.3 0 0 1-1.36-.3l-.94.3-3.74 3.74-.32.94a8.6 8.6 0 0 0 6.36 2.54Z" fill="#34A853"/>
+                  <path d="M9.5 13.45a8.65 8.65 0 0 0-5.2 15.5l3.84-3.85a3.3 3.3 0 1 1 4.37-4.37l3.85-3.85a8.6 8.6 0 0 0-6.86-3.43Z" fill="#FBBC05"/>
+                </svg>
+              </span>
+            </div>
+            <span class="hero-meta-label">AWS · Azure · Google Cloud</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-num">2025</span>
+            <span class="hero-meta-label">@ Black Hat USA</span>
           </div>
         </div>
-      </a>
-      <!-- LI-profile -->
-      
-    </div>
-
-    </div>
-
-  </div>
-
-  <!-- Certifications section -->
-  <div class="container">
-    <h2>Certifications & Skills</h2>
-    <div class="certifications">
-      <div class="cert-item">
-        <a href="https://www.credly.com/badges/34314c41-0dfd-4100-a62f-4a0cee4b48a2" target="_blank" class="cert-link">
-          <div class="cert-badge aws">AWS</div>
-        </a>
-        <span>AWS Solutions<br>Architect – Associate</span>
       </div>
-      <div class="cert-item">
-        <a href="https://www.credly.com/badges/51bf269e-c622-46c1-a2a3-9b6866310016/public_url" target="_blank" class="cert-link">
-          <div class="cert-badge aws">AWS</div>
-        </a>
-        <span>AWS Developer<br>– Associate</span>
-      </div>
-      <div class="cert-item">
-        <a href="https://www.credly.com/badges/37864c3e-0f05-45a6-800f-2fe3bce7c302/public_url" target="_blank" class="cert-link">
-          <div class="cert-badge azure">Azure</div>
-        </a>
-        <span>Azure<br>Fundamentals</span>
-      </div>
-      <div class="cert-item">
-        <a href="https://www.credly.com/badges/bdc4d615-8cfe-43ec-a09e-bb65e9b08ee4/public_url" target="_blank" class="cert-link">
-          <div class="cert-badge github">Github</div>
-        </a>
-        <span>GitHub<br>Actions</span>
-      </div>
-      <div class="cert-item">
-        <a href="https://www.credly.com/badges/5884c181-0e19-485d-8c73-94a2aa72f1f3/public_url" target="_blank" class="cert-link">
-          <div class="cert-badge gcp">GCP</div>
-        </a>
-        <span>Google Cloud<br>Digital Leader</span>
-      </div>
-      <div class="cert-item">
-        <a href="https://www.credly.com/badges/f14aa122-8a96-4d2b-85f5-e4aee189fcee" target="_blank" class="cert-link">
-          <div class="cert-badge ibm">IBM</div>
-        </a>
-        <span>IBM Application<br>Developer</span>
-      </div>
-      <div class="cert-item">
-        <a href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" class="cert-link">
-          <div class="cert-badge more">+</div>
-        </a>
-        <span>More<br>Certifications</span>
+      <div class="hero-right">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dot r"></span>
+            <span class="terminal-dot y"></span>
+            <span class="terminal-dot g"></span>
+            <span class="terminal-title">~/luciano · zsh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="term-prompt">›</span> <span class="term-cmd">whoami</span></div>
+            <div class="term-line">luciano.mori · sr. devops engineer · ottawa 🇨🇦</div>
+            <div class="term-line">&nbsp;</div>
+            <div class="term-line"><span class="term-prompt">›</span> <span class="term-cmd">cat focus.yaml</span></div>
+            <div class="term-line"><span class="term-key">role</span>: <span class="term-val">"Sr. DevOps Engineer"</span></div>
+            <div class="term-line"><span class="term-key">stack</span>: <span class="term-val">[aws, azure, gcp]</span></div>
+            <div class="term-line"><span class="term-key">specialties</span>:</div>
+            <div class="term-line">&nbsp;&nbsp;- <span class="term-val">cost-efficient AI workflows</span></div>
+            <div class="term-line">&nbsp;&nbsp;- <span class="term-val">secure CI/CD &amp; IaC</span></div>
+            <div class="term-line">&nbsp;&nbsp;- <span class="term-val">agentic systems on cloud</span></div>
+            <div class="term-line"><span class="term-key">last_seen</span>: <span class="term-warn">"BlackHat 2025 · Snyk booth"</span></div>
+            <div class="term-line">&nbsp;</div>
+            <div class="term-line"><span class="term-prompt">›</span> <span class="term-cmd">ssh you@team</span><span class="term-cursor"></span></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-      
-  <a id="floating_button_sirena" class="widget_bg1 right" href="https://www.linkedin.com/in/lucianosmori/" target="_blank">
-    <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" id="widget_logo" style="right:10px;">
+  </header>
+
+  <!-- Capabilities -->
+  <section class="section" id="capabilities">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-eyebrow">Tech Capabilities</p>
+          <h2 class="section-title">What I ship.</h2>
+        </div>
+        <p class="section-lead">
+          Cost-efficient, scalable AI workflows on secure cloud infrastructure: practitioner-built, Credly-verified, production-tested.
+        </p>
+      </div>
+      <div class="cap-grid">
+        <a class="cap-card featured" href="https://www.linkedin.com/feed/update/urn:li:activity:7359673931240255488/" target="_blank" rel="noreferrer">
+          <div class="cap-tag">Featured · Black Hat 2025</div>
+          <h3 class="cap-title">DevSecOps in Action</h3>
+          <p class="cap-body">Represented Snyk at #BlackHat 2025, sharing how we secure AI-generated code from inception to production. Practical SAST, IaC, and supply-chain hardening for AI workflows.</p>
+          <ul class="cap-bullets">
+            <li>SAST · IaC · Supply chain</li>
+            <li>AI-code security at scale</li>
+            <li>Snyk × Black Hat USA</li>
+          </ul>
+          <div class="cap-image" aria-hidden="true"></div>
+          <div class="cap-foot"><span>Read more</span><span class="cap-arrow">→</span></div>
+        </a>
+
+        <a class="cap-card" href="https://www.credly.com/users/lucianosmori" target="_blank" rel="noreferrer">
+          <div class="cap-tag">01 / Cloud &amp; DevOps</div>
+          <h3 class="cap-title">Cost-efficient cloud foundations</h3>
+          <p class="cap-body">Architected and deployed secure cloud workloads across AWS, Azure, GCP &amp; IBM. CI/CD pipelines, Terraform IaC, and cloud training delivered for engineering teams.</p>
+          <ul class="cap-bullets">
+            <li>AWS · Azure · GCP · IBM</li>
+            <li>Terraform · GitHub Actions</li>
+            <li>FinOps &amp; autoscaling</li>
+          </ul>
+          <div class="cap-foot"><span>Read more</span><span class="cap-arrow">→</span></div>
+        </a>
+
+        <a class="cap-card" href="#contact">
+          <div class="cap-tag">02 / AI Solutions</div>
+          <h3 class="cap-title">Production-grade AI agents</h3>
+          <p class="cap-body">Designing and deploying intelligent AI agents and secure applications. From prototype to production, end-to-end on cloud infrastructure, with cost guardrails baked in.</p>
+          <ul class="cap-bullets">
+            <li>Agentic systems</li>
+            <li>RAG · evaluation harnesses</li>
+            <li>Token &amp; infra budgets</li>
+          </ul>
+          <div class="cap-foot"><span>Read more</span><span class="cap-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="section" id="certs">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-eyebrow">Certifications &amp; Skills</p>
+          <h2 class="section-title">Verified credentials.</h2>
+        </div>
+        <p class="section-lead">
+          Every badge links to its Credly verification. All current, all verifiable.
+        </p>
+      </div>
+      <div class="cert-filters" id="certFilters">
+        <button class="cert-filter active" data-filter="all">All</button>
+        <button class="cert-filter" data-filter="aws">AWS</button>
+        <button class="cert-filter" data-filter="azure">Azure</button>
+        <button class="cert-filter" data-filter="gcp">GCP</button>
+        <button class="cert-filter" data-filter="github">GitHub</button>
+        <button class="cert-filter" data-filter="ibm">IBM</button>
+      </div>
+      <div class="cert-grid" id="certGrid">
+        <div class="cert-item" data-vendor="aws">
+          <a class="cert-link" href="https://www.credly.com/badges/34314c41-0dfd-4100-a62f-4a0cee4b48a2" target="_blank" rel="noreferrer"><div class="cert-badge aws">AWS</div></a>
+          <span class="cert-label">AWS Solutions<br/>Architect – Associate</span>
+        </div>
+        <div class="cert-item" data-vendor="aws">
+          <a class="cert-link" href="https://www.credly.com/badges/51bf269e-c622-46c1-a2a3-9b6866310016/public_url" target="_blank" rel="noreferrer"><div class="cert-badge aws">AWS</div></a>
+          <span class="cert-label">AWS Developer<br/>– Associate</span>
+        </div>
+        <div class="cert-item" data-vendor="azure">
+          <a class="cert-link" href="https://www.credly.com/badges/37864c3e-0f05-45a6-800f-2fe3bce7c302/public_url" target="_blank" rel="noreferrer"><div class="cert-badge azure">Azure</div></a>
+          <span class="cert-label">Azure<br/>Fundamentals</span>
+        </div>
+        <div class="cert-item" data-vendor="github">
+          <a class="cert-link" href="https://www.credly.com/badges/bdc4d615-8cfe-43ec-a09e-bb65e9b08ee4/public_url" target="_blank" rel="noreferrer"><div class="cert-badge github">Github</div></a>
+          <span class="cert-label">GitHub<br/>Actions</span>
+        </div>
+        <div class="cert-item" data-vendor="github">
+          <a class="cert-link" href="https://www.credly.com/badges/b2027b4d-f8cf-4da7-9ac7-6131ee0acd57" target="_blank" rel="noreferrer"><div class="cert-badge github">Github</div></a>
+          <span class="cert-label">GitHub<br/>Copilot</span>
+        </div>
+        <div class="cert-item" data-vendor="gcp">
+          <a class="cert-link" href="https://www.credly.com/badges/5884c181-0e19-485d-8c73-94a2aa72f1f3/public_url" target="_blank" rel="noreferrer"><div class="cert-badge gcp">GCP</div></a>
+          <span class="cert-label">Google Cloud<br/>Digital Leader</span>
+        </div>
+        <div class="cert-item" data-vendor="gcp">
+          <a class="cert-link" href="https://www.credly.com/badges/3e18546e-aa84-4ffc-a690-ffc83b967244/public_url" target="_blank" rel="noreferrer"><div class="cert-badge gcp">GCP</div></a>
+          <span class="cert-label">Google Cloud<br/>Gen AI Leader</span>
+        </div>
+        <div class="cert-item" data-vendor="ibm">
+          <a class="cert-link" href="https://www.credly.com/badges/f14aa122-8a96-4d2b-85f5-e4aee189fcee" target="_blank" rel="noreferrer"><div class="cert-badge ibm">IBM</div></a>
+          <span class="cert-label">IBM Application<br/>Developer</span>
+        </div>
+        <div class="cert-item" data-vendor="more">
+          <a class="cert-link" href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" rel="noreferrer"><div class="cert-badge more">+</div></a>
+          <span class="cert-label">More<br/>Certifications</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA banner -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-banner">
+        <div>
+          <h3>Building cost-efficient AI<br/>on the cloud. Let's talk.</h3>
+          <p>Looking for a practitioner-engineer to architect, secure, and ship your AI workflows? I'm open to selected engagements and conference invitations through Q2 2026.</p>
+        </div>
+        <a class="btn-primary" href="https://www.linkedin.com/in/lucianosmori/" target="_blank" rel="noreferrer">
+          Connect on Linkedin!
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h5>About</h5>
+          <p class="footer-bio">
+            <strong>Eng. Luciano Mori</strong> · Sr. DevOps Engineer working at the intersection of cloud, AI &amp; cybersecurity. Based in Ottawa, Canada.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h5>Browse</h5>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#certs">Certifications</a>
+        </div>
+        <div class="footer-col">
+          <h5>Elsewhere</h5>
+          <a href="https://www.linkedin.com/in/lucianosmori/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://github.com/lucianosmori" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.credly.com/users/lucianosmori" target="_blank" rel="noreferrer">Credly</a>
+        </div>
+        <div class="footer-col">
+          <h5>Now</h5>
+          <a>Cost-efficient AI workflows</a>
+          <a>Open-source DevSecOps</a>
+          <a>Conference invitations</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-mark">
+          <span class="brand-mark">LSM</span>
+          Made with <span style="color:#ff5b6e;">♥</span> Canada · 2026
+        </span>
+        <span>lucianomori.tech · 2.0.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FAB -->
+  <a class="fab" href="https://www.linkedin.com/in/lucianosmori/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
   </a>
-  
-</div>   
-  <!-- Footer section -->
-<div class="footer">
-  <p>
-    Made with ❤️ in Alberdi, Côte-des-Neiges & Westboro
-  </p>
 
-</div>
+  <script>
+    // Theme: auto (local time) by default — dark 19:00–06:59, light otherwise.
+    // User toggle persists for the session via data-theme on <html>.
+    (function () {
+      const root = document.documentElement;
+      const sunIcon  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+      const moonIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+      const stored = localStorage.getItem('theme');
+      const autoTheme = (() => {
+        const h = new Date().getHours();
+        return (h >= 19 || h < 7) ? 'dark' : 'light';
+      })();
+      const initial = stored || autoTheme;
+      root.dataset.theme = initial;
+
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const paint = (t) => { icon.outerHTML = (t === 'dark' ? sunIcon : moonIcon).replace('<svg', '<svg id="themeIcon"'); };
+      paint(initial);
+
+      btn.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('theme', next);
+        paint(next);
+      });
+
+      // Cert filter
+      const filters = document.querySelectorAll('.cert-filter');
+      const items = document.querySelectorAll('#certGrid .cert-item');
+      filters.forEach(f => f.addEventListener('click', () => {
+        filters.forEach(x => x.classList.remove('active'));
+        f.classList.add('active');
+        const v = f.dataset.filter;
+        items.forEach(it => {
+          const vendor = it.dataset.vendor;
+          it.style.display = (v === 'all' || vendor === v || vendor === 'more') ? '' : 'none';
+        });
+      }));
+    })();
+  </script>
 </body>
 </html>
