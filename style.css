@@ -306,9 +306,12 @@ body {
 }
 [data-theme="light"] .hero-sub { color: var(--ink-soft); }
 [data-theme="light"] .hero-eyebrow {
-  background: rgba(0,0,0,.04);
-  border-color: rgba(0,0,0,.1);
+  background: rgba(255,255,255,.78);
+  border-color: rgba(0,0,0,.12);
   color: var(--ink-soft);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 4px 12px rgba(0,0,0,.04);
 }
 [data-theme="light"] .btn-ghost {
   color: var(--ink);
