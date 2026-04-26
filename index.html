@@ -67,7 +67,7 @@
         </div>
         <div class="hero-meta">
           <a class="hero-meta-item hero-meta-link is-cert" href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" rel="noreferrer">
-            <span class="hero-meta-num">100+</span>
+            <span class="hero-meta-num" id="certCount" data-target="111">0</span>
             <span class="hero-meta-label">Verified certifications</span>
           </a>
           <a class="hero-meta-item hero-meta-chip hero-meta-link" href="https://www.credly.com/badges/34314c41-0dfd-4100-a62f-4a0cee4b48a2" target="_blank" rel="noreferrer" title="AWS Certified Solutions Architect – Associate">
@@ -347,6 +347,21 @@
         localStorage.setItem('theme', next);
         paint(next);
       });
+
+      // Speedometer count-up for the cert counter (runs once on load).
+      const counter = document.getElementById('certCount');
+      if (counter) {
+        const target = parseInt(counter.dataset.target, 10) || 0;
+        const duration = 1600;
+        const start = performance.now();
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / duration);
+          counter.textContent = Math.round(easeOut(t) * target);
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
 
       // Hero "2025 @ Black Hat USA" → spotlight + scroll the featured card
       const bhMeta = document.getElementById('bhMeta');
