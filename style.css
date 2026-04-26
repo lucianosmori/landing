@@ -398,6 +398,15 @@ body {
   color: #fff;
 }
 .hero h1 .eng { color: rgba(255,255,255,.6); font-weight: 700; font-size: .55em; display: block; margin-bottom: 8px; letter-spacing: .04em; text-transform: uppercase; }
+.hero h1 .amp {
+  font-family: "Overpass", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: .92em;
+  letter-spacing: 0;
+  vertical-align: baseline;
+  margin: 0 .04em;
+}
 
 .hero-tagline {
   font-family: var(--font-display);
