@@ -429,6 +429,9 @@ body {
 
 .hero-meta { display: flex; gap: 28px; margin-top: 48px; flex-wrap: wrap; align-items: flex-start; }
 .hero-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.hero-meta-link { text-decoration: none; color: inherit; transition: transform .2s ease; cursor: pointer; }
+.hero-meta-link:hover { transform: translateY(-2px); }
+.hero-meta-link:hover .hero-meta-num { color: var(--brand-green); text-shadow: 0 0 12px rgba(var(--brand-green-rgb),.5); }
 .hero-meta-num {
   font-family: var(--font-display); font-weight: 900;
   font-size: 32px; color: #fff;
