@@ -549,7 +549,13 @@ body {
 .terminal-body { padding: 18px 20px 22px; min-height: 260px; }
 .term-line { display: block; white-space: pre-wrap; }
 .term-line + .term-line { margin-top: 4px; }
-.term-prompt { color: var(--brand-green); }
+.term-prompt {
+  color: var(--brand-green);
+  font-weight: 700;
+  font-size: 1.15em;
+  margin-right: 2px;
+  text-shadow: 0 0 6px rgba(var(--brand-green-rgb),.6), 0 0 14px rgba(var(--brand-green-rgb),.35);
+}
 .term-cmd { color: #fff; }
 .term-comment { color: rgba(255,255,255,.4); }
 .term-key { color: #82aaff; }
