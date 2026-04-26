@@ -348,22 +348,29 @@
         paint(next);
       });
 
-      // Speedometer count-up for the cert counter. Pulls the live total
-      // from Credly's public JSON; falls back to data-target if blocked.
+      // Speedometer count-up for the cert counter. Starts animating to
+      // the static fallback immediately; if Credly's JSON answers with
+      // a different number, smoothly retargets from the current value.
       const counter = document.getElementById('certCount');
       if (counter) {
         const fallback = parseInt(counter.dataset.target, 10) || 111;
-        const animate = (target) => {
-          const duration = 1600;
+        let rafId = null;
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        const animateTo = (target, duration) => {
+          if (rafId) cancelAnimationFrame(rafId);
+          const from = parseInt(counter.textContent, 10) || 0;
+          if (from === target) return;
           const start = performance.now();
-          const easeOut = (t) => 1 - Math.pow(1 - t, 3);
           const tick = (now) => {
             const t = Math.min(1, (now - start) / duration);
-            counter.textContent = Math.round(easeOut(t) * target);
-            if (t < 1) requestAnimationFrame(tick);
+            counter.textContent = Math.round(from + (target - from) * easeOut(t));
+            if (t < 1) rafId = requestAnimationFrame(tick);
           };
-          requestAnimationFrame(tick);
+          rafId = requestAnimationFrame(tick);
         };
+        // Kick off the initial 0 → fallback roll right away.
+        animateTo(fallback, 1600);
+        // Try to upgrade the target with the live count.
         const ctrl = new AbortController();
         const timeout = setTimeout(() => ctrl.abort(), 3000);
         fetch('https://www.credly.com/users/luciano-s-mori/badges.json', { signal: ctrl.signal })
@@ -371,9 +378,9 @@
           .then(d => {
             clearTimeout(timeout);
             const n = d && d.metadata && d.metadata.total_count;
-            animate(Number.isFinite(n) && n > 0 ? n : fallback);
+            if (Number.isFinite(n) && n > 0 && n !== fallback) animateTo(n, 700);
           })
-          .catch(() => { clearTimeout(timeout); animate(fallback); });
+          .catch(() => { clearTimeout(timeout); });
       }
 
       // Hero "2025 @ Black Hat USA" → spotlight + scroll the featured card
