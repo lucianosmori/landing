@@ -269,12 +269,12 @@ body {
   display: block;
   opacity: .42;
   filter: saturate(1.55) contrast(1.05) brightness(1.02);
-  mask-image: radial-gradient(ellipse 38% 42% at 52% 18%, black 35%, transparent 90%);
-  -webkit-mask-image: radial-gradient(ellipse 38% 42% at 52% 18%, black 35%, transparent 90%);
+  mask-image: radial-gradient(ellipse 26% 38% at 72% 22%, black 35%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 26% 38% at 72% 22%, black 35%, transparent 90%);
 }
 [data-theme="light"] .hero::after {
   background:
-    radial-gradient(420px 240px at 52% 18%, rgba(var(--brand-green-rgb),.22), transparent 70%),
+    radial-gradient(360px 220px at 72% 22%, rgba(var(--brand-green-rgb),.22), transparent 70%),
     radial-gradient(700px 360px at 85% 115%, rgba(var(--brand-green-rgb),.22), transparent 65%),
     linear-gradient(180deg, rgba(251,251,248,0) 0%, rgba(251,251,248,.55) 70%, rgba(246,247,243,.9) 100%),
     radial-gradient(500px 300px at 10% 0%, rgba(13,30,198,.05), transparent 70%);
