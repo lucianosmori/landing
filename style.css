@@ -432,10 +432,25 @@ body {
 .hero-meta-chip { align-items: center; gap: 6px; }
 .hero-meta-chip .hero-meta-label { text-align: center; }
 .hero-meta-link { text-decoration: none; color: inherit; transition: transform .2s ease; cursor: pointer; }
-.hero-meta-link .hero-meta-num { color: var(--brand-green); text-shadow: 0 0 10px rgba(var(--brand-green-rgb),.35); transition: text-shadow .2s ease, transform .2s ease; }
-[data-theme="light"] .hero-meta-link .hero-meta-num { color: var(--brand-green-dark); text-shadow: 0 0 8px rgba(var(--brand-green-rgb),.3); }
+.hero-meta-link .hero-meta-num { transition: text-shadow .2s ease, transform .2s ease; }
+.hero-meta-link.is-cert .hero-meta-num { color: var(--brand-green); text-shadow: 0 0 10px rgba(var(--brand-green-rgb),.35); }
+[data-theme="light"] .hero-meta-link.is-cert .hero-meta-num { color: var(--brand-green-dark); text-shadow: 0 0 8px rgba(var(--brand-green-rgb),.3); }
 .hero-meta-link:hover { transform: translateY(-2px); }
-.hero-meta-link:hover .hero-meta-num { text-shadow: 0 0 18px rgba(var(--brand-green-rgb),.7); }
+.hero-meta-link.is-cert:hover .hero-meta-num { text-shadow: 0 0 18px rgba(var(--brand-green-rgb),.7); }
+.hero-meta-link.is-blackhat:hover .hero-meta-num { text-shadow: 0 0 18px rgba(var(--brand-green-rgb),.55); }
+
+/* Spotlight: when 2025 hero meta is hovered, highlight the BH card */
+.cap-card.featured.is-spotlit {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 2px rgba(var(--brand-green-rgb),.35), 0 18px 38px rgba(0,0,0,.25);
+  transform: translateY(-3px);
+}
+.cap-card.featured.is-spotlit::before { transform: scaleY(1); }
+.cap-card.featured.is-spotlit .cap-image { box-shadow: 0 12px 30px rgba(var(--brand-green-rgb),.45), inset 0 0 0 1px rgba(var(--brand-green-rgb),.55); }
+
+/* Section-lead as secret link */
+.section-lead-link { display: block; text-decoration: none; cursor: pointer; transition: color .2s ease; }
+.section-lead-link:hover { color: var(--brand-green); }
 .hero-meta-num {
   font-family: var(--font-display); font-weight: 900;
   font-size: 32px; color: #fff;

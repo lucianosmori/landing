@@ -66,7 +66,7 @@
           <a class="btn-ghost" href="#capabilities">See capabilities</a>
         </div>
         <div class="hero-meta">
-          <a class="hero-meta-item hero-meta-link" href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" rel="noreferrer">
+          <a class="hero-meta-item hero-meta-link is-cert" href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" rel="noreferrer">
             <span class="hero-meta-num">100+</span>
             <span class="hero-meta-label">Verified certifications</span>
           </a>
@@ -111,10 +111,10 @@
             </span>
             <span class="hero-meta-label">Google<br/>Cloud</span>
           </a>
-          <div class="hero-meta-item">
+          <a class="hero-meta-item hero-meta-link is-blackhat" id="bhMeta" href="#featured-blackhat" aria-label="Jump to Black Hat 2025 card">
             <span class="hero-meta-num">2025</span>
             <span class="hero-meta-label">@ Black Hat USA</span>
-          </div>
+          </a>
         </div>
       </div>
       <div class="hero-right">
@@ -158,7 +158,7 @@
         </p>
       </div>
       <div class="cap-grid">
-        <a class="cap-card featured" href="https://www.linkedin.com/feed/update/urn:li:activity:7359673931240255488/" target="_blank" rel="noreferrer">
+        <a class="cap-card featured" id="featured-blackhat" href="https://www.linkedin.com/feed/update/urn:li:activity:7359673931240255488/" target="_blank" rel="noreferrer">
           <div class="cap-tag">Featured · Black Hat 2025</div>
           <h3 class="cap-title">DevSecOps in Action</h3>
           <p class="cap-body">Represented Snyk at #BlackHat 2025, sharing how we secure AI-generated code from inception to production. Practical SAST, IaC, and supply-chain hardening for AI workflows.</p>
@@ -208,9 +208,9 @@
           <p class="section-eyebrow">Certifications &amp; Skills</p>
           <h2 class="section-title">Verified credentials.</h2>
         </div>
-        <p class="section-lead">
+        <a class="section-lead section-lead-link" href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" rel="noreferrer">
           Every badge links to its Credly verification. All current, all verifiable.
-        </p>
+        </a>
       </div>
       <div class="cert-filters" id="certFilters">
         <button class="cert-filter active" data-filter="all">All</button>
@@ -347,6 +347,22 @@
         localStorage.setItem('theme', next);
         paint(next);
       });
+
+      // Hero "2025 @ Black Hat USA" → spotlight + scroll the featured card
+      const bhMeta = document.getElementById('bhMeta');
+      const bhCard = document.getElementById('featured-blackhat');
+      if (bhMeta && bhCard) {
+        bhMeta.addEventListener('mouseenter', () => bhCard.classList.add('is-spotlit'));
+        bhMeta.addEventListener('mouseleave', () => bhCard.classList.remove('is-spotlit'));
+        bhMeta.addEventListener('focus', () => bhCard.classList.add('is-spotlit'));
+        bhMeta.addEventListener('blur', () => bhCard.classList.remove('is-spotlit'));
+        bhMeta.addEventListener('click', (e) => {
+          e.preventDefault();
+          bhCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          bhCard.classList.add('is-spotlit');
+          setTimeout(() => bhCard.classList.remove('is-spotlit'), 1600);
+        });
+      }
 
       // Cert filter
       const filters = document.querySelectorAll('.cert-filter');
