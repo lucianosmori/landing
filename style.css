@@ -859,6 +859,13 @@ body {
   font-size: 14px;
 }
 .footer-col a:hover { color: var(--brand-green); }
+.footer-col .footer-tag {
+  display: block;
+  color: rgba(255,255,255,.55);
+  padding: 4px 0;
+  font-size: 14px;
+}
+[data-theme="light"] .footer-col .footer-tag { color: #666; }
 .footer-bio { color: rgba(255,255,255,.6); line-height: 1.55; max-width: 320px; }
 .footer-bio strong { color: #fff; font-weight: 700; }
 .footer-bottom {

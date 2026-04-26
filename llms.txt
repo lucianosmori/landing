@@ -1,0 +1,46 @@
+# Eng. Luciano Mori — Sr. DevOps · Cloud, AI & Security
+
+> Personal site of Luciano Mori, a Senior DevOps Engineer based in Ottawa, Canada,
+> specializing in cost-efficient AI workflows on secure cloud infrastructure
+> across AWS, Azure, Google Cloud, and IBM Cloud. 100+ verified Credly badges,
+> Snyk × Black Hat USA 2025 speaker on DevSecOps for AI-generated code.
+
+## Identity
+
+- Full name: Luciano S. Mori
+- Title: Senior DevOps Engineer
+- Location: Ottawa, Ontario, Canada (origin: Argentina 🇦🇷)
+- Focus: Cloud, AI & Cybersecurity
+- Site: https://lucianomori.cloud
+- LinkedIn: https://www.linkedin.com/in/lucianosmori/
+- GitHub: https://github.com/lucianosmori
+- Credly (verified credentials): https://www.credly.com/users/luciano-s-mori/badges
+
+## Capabilities
+
+- **Cloud & DevOps**: Architected and deployed secure workloads across AWS, Azure, GCP, and IBM Cloud. Terraform IaC, GitHub Actions CI/CD, FinOps and autoscaling. Delivered cloud training to engineering teams.
+- **AI Solutions**: Production-grade AI agents — RAG pipelines, evaluation harnesses, token & infra budgeting, agentic systems on cloud.
+- **DevSecOps**: SAST, IaC scanning, supply-chain hardening for AI-generated code. Represented Snyk at Black Hat USA 2025.
+
+## Certifications (selection)
+
+- AWS Certified Solutions Architect – Associate
+- AWS Certified Developer – Associate
+- AWS Certified Cloud Practitioner
+- Microsoft Certified: Azure Fundamentals
+- Google Cloud Digital Leader
+- Google Cloud Generative AI Leader
+- GitHub Actions
+- GitHub Copilot
+- GitHub Foundations
+- IBM Certified Application Developer – Cloud Platform V1
+- 100+ additional badges on Credly
+
+## Notable
+
+- Speaker, Snyk × Black Hat USA 2025 — "Securing AI-Generated Code from Inception to Production"
+- Available for cloud & AI engagements through Q2 2026
+
+## Contact
+
+- Best contact: https://www.linkedin.com/in/lucianosmori/
