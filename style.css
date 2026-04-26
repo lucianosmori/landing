@@ -313,6 +313,13 @@ body {
   -webkit-backdrop-filter: blur(8px) saturate(1.05);
   box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 4px 12px rgba(0,0,0,.04);
 }
+[data-theme="light"] .hero-eyebrow .pulse {
+  background: var(--brand-green);
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.9),
+    0 0 8px rgba(var(--brand-green-rgb),.9),
+    0 0 14px rgba(var(--brand-green-rgb),.55);
+}
 [data-theme="light"] .btn-ghost {
   color: var(--ink);
   background: rgba(0,0,0,.04);
