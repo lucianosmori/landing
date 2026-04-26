@@ -267,14 +267,15 @@ body {
 }
 [data-theme="light"] .hero::before {
   display: block;
-  opacity: .14;
-  filter: grayscale(.8) contrast(.95);
-  mask-image: radial-gradient(ellipse 70% 80% at 75% 50%, black 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 75% 50%, black 30%, transparent 75%);
+  opacity: .55;
+  filter: saturate(1.6) contrast(1.05) brightness(1.02);
+  mask-image: radial-gradient(ellipse 95% 95% at 75% 45%, black 55%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 95% at 75% 45%, black 55%, transparent 95%);
 }
 [data-theme="light"] .hero::after {
   background:
-    radial-gradient(700px 360px at 85% 115%, rgba(var(--brand-green-rgb),.22), transparent 65%),
+    radial-gradient(700px 360px at 85% 115%, rgba(var(--brand-green-rgb),.28), transparent 65%),
+    radial-gradient(600px 380px at 75% 45%, rgba(var(--brand-green-rgb),.18), transparent 70%),
     radial-gradient(500px 300px at 10% 0%, rgba(13,30,198,.05), transparent 70%);
 }
 [data-theme="light"] .hero-grid-bg {
