@@ -1,7 +1,11 @@
 """GSC Search Analytics + Index Coverage pull for lucianomori.cloud.
 
-Reads service-account creds from ~/.gsc/sa.json (override with GSC_SA_KEY env var).
-Outputs CSVs into ./data/gsc-YYYY-MM-DD/ alongside a small JSON summary.
+Auth: OAuth 2.0 installed-app flow. Reads the client config from
+~/.gsc/oauth.json (or $GSC_OAUTH_CLIENT). Stores the user's refresh
+token at ~/.gsc/token.json (or $GSC_TOKEN) so subsequent runs are
+silent. First run opens a browser for one-time consent.
+
+Outputs CSVs into ./data/gsc-YYYY-MM-DD/ and a small JSON summary.
 
 Run:   python scripts/gsc-pull.py
 """
@@ -14,21 +18,38 @@ import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
-from google.oauth2 import service_account
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 SITE = "sc-domain:lucianomori.cloud"
 SCOPES = ["https://www.googleapis.com/auth/webmasters.readonly"]
-DEFAULT_KEY = Path.home() / ".gsc" / "sa.json"
+CLIENT_PATH = Path(os.environ.get("GSC_OAUTH_CLIENT", str(Path.home() / ".gsc" / "oauth.json")))
+TOKEN_PATH = Path(os.environ.get("GSC_TOKEN", str(Path.home() / ".gsc" / "token.json")))
 DAYS = 90
 
 
-def credentials():
-    key_path = Path(os.environ.get("GSC_SA_KEY", str(DEFAULT_KEY)))
-    if not key_path.is_file():
-        sys.exit(f"Service-account key not found at {key_path}. Set GSC_SA_KEY or place file at ~/.gsc/sa.json.")
-    return service_account.Credentials.from_service_account_file(str(key_path), scopes=SCOPES)
+def credentials() -> Credentials:
+    creds: Credentials | None = None
+    if TOKEN_PATH.is_file():
+        creds = Credentials.from_authorized_user_file(str(TOKEN_PATH), SCOPES)
+
+    if creds and creds.valid:
+        return creds
+
+    if creds and creds.expired and creds.refresh_token:
+        creds.refresh(Request())
+    else:
+        if not CLIENT_PATH.is_file():
+            sys.exit(f"OAuth client config not found at {CLIENT_PATH}. Set GSC_OAUTH_CLIENT or place file at ~/.gsc/oauth.json.")
+        flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT_PATH), SCOPES)
+        creds = flow.run_local_server(port=0, prompt="consent", open_browser=True)
+
+    TOKEN_PATH.parent.mkdir(parents=True, exist_ok=True)
+    TOKEN_PATH.write_text(creds.to_json(), encoding="utf-8")
+    return creds
 
 
 def query(service, *, dimensions: list[str], start: str, end: str, row_limit: int = 25000):
@@ -68,7 +89,13 @@ def main():
 
     print(f"Pulling {start} to {end} ({DAYS} days) for {SITE}")
 
-    summary = {"site": SITE, "start": str(start), "end": str(end), "pulled_at": datetime.now().isoformat(timespec="seconds"), "counts": {}}
+    summary = {
+        "site": SITE,
+        "start": str(start),
+        "end": str(end),
+        "pulled_at": datetime.now().isoformat(timespec="seconds"),
+        "counts": {},
+    }
 
     pulls = [
         ("queries.csv", ["query"]),
@@ -87,18 +114,10 @@ def main():
             summary["counts"][filename] = len(rows)
             print(f"  {filename}: {len(rows)} rows")
     except HttpError as e:
-        sys.exit(f"GSC API error: {e}\n\nIf this is a 403, grant {get_sa_email()} access to the property at\nhttps://search.google.com/search-console to Settings to Users and permissions to Add user (Restricted).")
+        sys.exit(f"GSC API error: {e}")
 
     (out_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"\nDone. CSVs at {out_dir.resolve()}")
-
-
-def get_sa_email() -> str:
-    key_path = Path(os.environ.get("GSC_SA_KEY", str(DEFAULT_KEY)))
-    try:
-        return json.loads(key_path.read_text())["client_email"]
-    except Exception:
-        return "<service account email>"
 
 
 if __name__ == "__main__":
