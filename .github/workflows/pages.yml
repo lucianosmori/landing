@@ -28,3 +28,21 @@ jobs:
           path: .
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Async, non-blocking Lighthouse audit on the live site.
+  # Runs after deploy completes; never fails the workflow.
+  # Reports archive as artifacts + temporary public storage URL.
+  lighthouse-live:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for CDN to serve fresh content
+        run: sleep 45
+      - name: Lighthouse against live site
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: .lighthouserc.live.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
