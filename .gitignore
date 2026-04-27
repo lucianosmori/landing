@@ -1,2 +1,11 @@
 *.code-workspace
 *.log
+
+# Credentials / secrets — never commit
+*.json
+service-account*.json
+sa*.json
+*.pem
+*.key
+.env
+.env.*
