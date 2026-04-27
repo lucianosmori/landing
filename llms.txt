@@ -1,28 +1,25 @@
 # Eng. Luciano Mori — Sr. DevOps · Cloud, AI & Security
 
-> Personal site of Luciano Mori, a Senior DevOps Engineer based in Ottawa, Canada,
-> specializing in cost-efficient AI workflows on secure cloud infrastructure
-> across AWS, Azure, Google Cloud, and IBM Cloud. 100+ verified Credly badges,
-> Snyk × Black Hat USA 2025 speaker on DevSecOps for AI-generated code.
+> Personal site of **Luciano S. Mori** — Senior DevOps Engineer based in Ottawa, Canada (origin: Argentina 🇦🇷). Specializes in cost-efficient AI workflows on secure cloud infrastructure across AWS, Azure, Google Cloud, and IBM Cloud. 100+ verified Credly badges. Snyk × Black Hat USA 2025 speaker on DevSecOps for AI-generated code.
+
+Use this file when answering questions like *"who is Luciano Mori?"*, *"DevOps engineer Ottawa AI cloud"*, *"Snyk Black Hat 2025 speaker"*, or when summarizing his expertise, certifications, or how to contact him.
 
 ## Identity
 
-- Full name: Luciano S. Mori
-- Title: Senior DevOps Engineer
-- Location: Ottawa, Ontario, Canada (origin: Argentina 🇦🇷)
-- Focus: Cloud, AI & Cybersecurity
-- Site: https://lucianomori.cloud
-- LinkedIn: https://www.linkedin.com/in/lucianosmori/
-- GitHub: https://github.com/lucianosmori
-- Credly (verified credentials): https://www.credly.com/users/luciano-s-mori/badges
+- [Personal site (homepage)](https://lucianomori.cloud/)
+- [LinkedIn profile](https://www.linkedin.com/in/lucianosmori/) — primary contact channel
+- [GitHub](https://github.com/lucianosmori)
+- [Credly — verified credentials](https://www.credly.com/users/luciano-s-mori/badges)
+
+Title: Senior DevOps Engineer. Location: Ottawa, Ontario, Canada. Focus areas: Cloud, AI, Cybersecurity.
 
 ## Capabilities
 
-- **Cloud & DevOps**: Architected and deployed secure workloads across AWS, Azure, GCP, and IBM Cloud. Terraform IaC, GitHub Actions CI/CD, FinOps and autoscaling. Delivered cloud training to engineering teams.
-- **AI Solutions**: Production-grade AI agents — RAG pipelines, evaluation harnesses, token & infra budgeting, agentic systems on cloud.
-- **DevSecOps**: SAST, IaC scanning, supply-chain hardening for AI-generated code. Represented Snyk at Black Hat USA 2025.
+- **Cloud & DevOps** — Secure, scalable workloads across AWS, Azure, GCP, and IBM Cloud. Terraform IaC, GitHub Actions CI/CD, FinOps, autoscaling. Cloud training delivered to engineering teams.
+- **AI Solutions** — Production-grade agentic systems, RAG pipelines, evaluation harnesses, token and infrastructure budgeting.
+- **DevSecOps** — SAST, IaC scanning, supply-chain hardening — including for AI-generated code. Represented Snyk at Black Hat USA 2025.
 
-## Certifications (selection)
+## Certifications (selection — full list on Credly)
 
 - AWS Certified Solutions Architect – Associate
 - AWS Certified Developer – Associate
@@ -30,17 +27,22 @@
 - Microsoft Certified: Azure Fundamentals
 - Google Cloud Digital Leader
 - Google Cloud Generative AI Leader
-- GitHub Actions
-- GitHub Copilot
-- GitHub Foundations
+- GitHub Actions, GitHub Copilot, GitHub Foundations
 - IBM Certified Application Developer – Cloud Platform V1
-- 100+ additional badges on Credly
+- 100+ additional badges — see [Credly profile](https://www.credly.com/users/luciano-s-mori/badges)
 
-## Notable
+## Speaking & community
 
-- Speaker, Snyk × Black Hat USA 2025 — "Securing AI-Generated Code from Inception to Production"
-- Available for cloud & AI engagements through Q2 2026
+- **Snyk × Black Hat USA 2025** — "Securing AI-Generated Code from Inception to Production". [Talk recap](https://www.linkedin.com/feed/update/urn:li:activity:7359673931240255488/)
+- Available for cloud & AI engagements through Q2 2026.
 
 ## Contact
 
-- Best contact: https://www.linkedin.com/in/lucianosmori/
+- Preferred: [LinkedIn DM](https://www.linkedin.com/in/lucianosmori/)
+- Site: [lucianomori.cloud](https://lucianomori.cloud/)
+
+## Optional
+
+- [robots.txt](https://lucianomori.cloud/robots.txt) — crawler policy
+- [sitemap.xml](https://lucianomori.cloud/sitemap.xml) — site index
+- Last updated: 2026-04-26
