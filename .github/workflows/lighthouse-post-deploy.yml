@@ -1,0 +1,38 @@
+name: Lighthouse (post-deploy)
+
+# Async, non-blocking: fires after a successful Pages deploy and
+# audits the live site. Reports archive as artifacts + are uploaded
+# to lighthouse-ci's temporary public storage so the URL is shareable.
+# This workflow never fails the deploy — it is informational only.
+
+on:
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lighthouse-live
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Wait for CDN to serve fresh content
+        run: sleep 45
+
+      - name: Run Lighthouse against live site
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: .lighthouserc.live.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

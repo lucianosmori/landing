@@ -1,0 +1,32 @@
+name: Lighthouse (PR preview)
+
+# Audits the PR's checkout via lighthouse-ci's static-dist-dir mode
+# (no preview URL needed — lhci spins up its own static server).
+# continue-on-error keeps the PR mergeable even on regressions; the
+# action posts a comment with scores + a public report URL for review.
+
+on:
+  pull_request:
+    branches: [v2, master]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: lighthouse-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Lighthouse on PR checkout
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: .lighthouserc.pr.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

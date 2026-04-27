@@ -1,0 +1,21 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": ".",
+      "numberOfRuns": 1,
+      "settings": {
+        "preset": "desktop",
+        "skipAudits": ["uses-http2", "is-crawlable", "canonical"]
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance":     ["warn", { "minScore": 0.85 }],
+        "categories:accessibility":   ["warn", { "minScore": 0.95 }],
+        "categories:best-practices":  ["warn", { "minScore": 0.95 }],
+        "categories:seo":             ["warn", { "minScore": 0.90 }]
+      }
+    },
+    "upload": { "target": "temporary-public-storage" }
+  }
+}

@@ -2,10 +2,14 @@
 *.log
 
 # Credentials / secrets — never commit
-*.json
 service-account*.json
 sa*.json
+*credentials*.json
+gen-lang-client*.json
 *.pem
 *.key
 .env
 .env.*
+
+# Local data dumps from scripts/gsc-pull.py
+data/
