@@ -31,7 +31,7 @@ const entries = (await getCollection("work-log", entry => !entry.data.draft))
             });
             return (
               <li>
-                <a href={`/work-log/${entry.slug}`}>
+                <a href={`/work-log/${entry.id}`}>
                   <p class="entry-meta">{formatted}</p>
                   <h2 class="entry-title">{entry.data.title}</h2>
                   {entry.data.summary && <p class="entry-headline">{entry.data.summary}</p>}

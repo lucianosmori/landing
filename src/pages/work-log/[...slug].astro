@@ -1,12 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
   const entries = await getCollection("work-log", entry => !entry.data.draft);
   return entries.map(entry => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
@@ -15,7 +15,7 @@ interface Props {
   entry: CollectionEntry<"work-log">;
 }
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 const formatted = entry.data.monthStart.toLocaleDateString("en-CA", {
   year: "numeric",
   month: "long",

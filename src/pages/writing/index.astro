@@ -51,7 +51,7 @@ const articles = (await getCollection("writing", entry => !entry.data.draft))
             });
             return (
               <li>
-                <a href={`/writing/${article.slug}`}>
+                <a href={`/writing/${article.id}`}>
                   <p class="entry-meta">{formatted}</p>
                   <h2 class="entry-title">{article.data.title}</h2>
                   <p class="entry-headline">{article.data.description}</p>
