@@ -1,11 +1,10 @@
 name: Deploy to GitHub Pages
 
-# Astro build + publish. Triggered only on push to v2.
-# PoC branch (astro-poc-v2) does NOT deploy because of the branches filter.
+# Astro build + publish. Triggered on push to main.
 
 on:
   push:
-    branches: [v2]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

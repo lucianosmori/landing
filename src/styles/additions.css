@@ -246,3 +246,31 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 8px 20px rgba(var(--brand-green-rgb), .35);
 }
+
+/* Empty state (e.g. /writing with no articles) */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 48px 16px 24px;
+  color: var(--page-fg-soft);
+  text-align: center;
+}
+.empty-state svg {
+  color: var(--page-fg-soft);
+  opacity: .55;
+}
+.empty-state p {
+  margin: 0;
+  font-size: 15px;
+  max-width: 420px;
+}
+.empty-state a {
+  color: var(--brand-green-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+[data-theme="dark"] .empty-state a { color: var(--brand-green-bright); }
+.empty-state a:hover { color: var(--brand-green); }

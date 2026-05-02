@@ -1,7 +1,7 @@
 {
   "name": "landing",
   "type": "module",
-  "version": "2.1.0-poc",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",

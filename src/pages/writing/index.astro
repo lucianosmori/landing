@@ -20,7 +20,26 @@ const articles = (await getCollection("writing", entry => !entry.data.draft))
   <section class="section">
     <div class="container">
       {articles.length === 0 ? (
-        <p style="text-align:center; color:var(--page-fg-soft);">No articles published yet. Check the <a href="/work-log">work log</a> for the weekly recap.</p>
+        <div class="empty-state">
+          <svg viewBox="0 0 160 150" width="140" height="132" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M48 50 L56 30 L68 50" />
+            <path d="M112 50 L104 30 L92 50" />
+            <path d="M44 78 Q44 50 80 50 Q116 50 116 78" />
+            <circle cx="62" cy="68" r="2.5" fill="currentColor" stroke="none" />
+            <circle cx="98" cy="68" r="2.5" fill="currentColor" stroke="none" />
+            <line x1="74" y1="76" x2="66" y2="74" />
+            <line x1="74" y1="79" x2="64" y2="80" />
+            <line x1="86" y1="76" x2="94" y2="74" />
+            <line x1="86" y1="79" x2="96" y2="80" />
+            <rect x="22" y="78" width="116" height="58" rx="6" />
+            <circle cx="34" cy="88" r="2" fill="currentColor" stroke="none" />
+            <circle cx="42" cy="88" r="2" fill="currentColor" stroke="none" />
+            <circle cx="50" cy="88" r="2" fill="currentColor" stroke="none" />
+            <line x1="22" y1="96" x2="138" y2="96" />
+            <text x="36" y="122" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="700" fill="currentColor" stroke="none">&gt; _</text>
+          </svg>
+          <p>Drafts in the kiln. Check the <a href="/work-log">work log</a> for the monthly recap meanwhile.</p>
+        </div>
       ) : (
         <ul class="entry-list">
           {articles.map(article => {

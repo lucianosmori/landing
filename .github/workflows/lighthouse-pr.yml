@@ -6,7 +6,7 @@ name: Lighthouse (PR preview)
 
 on:
   pull_request:
-    branches: [v2, master]
+    branches: [main]
 
 permissions:
   contents: read
