@@ -6,7 +6,7 @@ const articles = (await getCollection("writing", entry => !entry.data.draft))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 <BaseLayout
-  title="Writing — Eng. Luciano Mori"
+  title="Writing: Luciano Mori"
   description="Long-form writing on cloud infrastructure, DevSecOps, and AI engineering."
 >
   <header class="page-header">

@@ -6,7 +6,7 @@ const entries = (await getCollection("work-log", entry => !entry.data.draft))
   .sort((a, b) => b.data.monthStart.getTime() - a.data.monthStart.getTime());
 ---
 <BaseLayout
-  title="Work Log — Eng. Luciano Mori"
+  title="Work : Luciano Mori"
   description="Monthly notes on what I am building, breaking, and learning."
 >
   <header class="page-header">

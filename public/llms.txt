@@ -1,4 +1,4 @@
-# Eng. Luciano Mori — Sr. DevOps · Cloud, AI & Security
+# Eng. Luciano Mori : Sr. DevOps · Cloud, AI & Security
 
 > Personal site of **Luciano S. Mori** — Senior DevOps Engineer based in Ottawa, Canada (origin: Argentina 🇦🇷). Specializes in cost-efficient AI workflows on secure cloud infrastructure across AWS, Azure, Google Cloud, and IBM Cloud. 100+ verified Credly badges. Snyk × Black Hat USA 2025 speaker on DevSecOps for AI-generated code.
 
