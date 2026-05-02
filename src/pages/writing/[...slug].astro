@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("writing", entry => !entry.data.draft);
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: CollectionEntry<"writing">;
+}
+const { article } = Astro.props;
+const { Content } = await article.render();
+const formatted = article.data.pubDate.toLocaleDateString("en-CA", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+---
+<BaseLayout
+  title={`${article.data.title} — Eng. Luciano Mori`}
+  description={article.data.description}
+  ogType="article"
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="section-eyebrow">Writing · {formatted}</p>
+      <h1>{article.data.title}</h1>
+      <p class="lead">{article.data.description}</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <Content />
+      </article>
+      <div class="article-footer">
+        <a href="/writing">← All writing</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

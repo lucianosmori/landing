@@ -1,0 +1,59 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => {
+  if (href === "/") return path === "/";
+  return path === href || path.startsWith(href + "/");
+};
+---
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand">
+      <span class="brand-mark">LSM</span>
+      <span class="brand-name">Luciano Mori</span>
+      <span class="brand-slash">/</span>
+      <span class="brand-role">Sr. DevOps · Cloud · AI</span>
+    </a>
+    <div class="nav-links">
+      {path === "/" ? (
+        <>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#certs">Certifications</a>
+        </>
+      ) : null}
+      <a href="/now" aria-current={isActive("/now") ? "page" : undefined}>Now</a>
+      <a href="/work-log" aria-current={isActive("/work-log") ? "page" : undefined}>Work Log</a>
+      <a href="/writing" aria-current={isActive("/writing") ? "page" : undefined}>Writing</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <a class="nav-cta" href="https://www.linkedin.com/in/lucianosmori/" target="_blank" rel="noreferrer">
+        Get in touch
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    var sun  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+    var moon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    var btn  = document.getElementById('themeToggle');
+    var icon = document.getElementById('themeIcon');
+    if (!btn || !icon) return;
+    var paint = function (t) {
+      var current = document.getElementById('themeIcon');
+      if (!current) return;
+      current.outerHTML = (t === 'dark' ? sun : moon).replace('<svg', '<svg id="themeIcon"');
+    };
+    paint(document.documentElement.dataset.theme || 'dark');
+    btn.addEventListener('click', function () {
+      var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint(next);
+    });
+  })();
+</script>

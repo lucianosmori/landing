@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const entries = (await getCollection("work-log", entry => !entry.data.draft))
+  .sort((a, b) => b.data.monthStart.getTime() - a.data.monthStart.getTime());
+---
+<BaseLayout
+  title="Work Log — Eng. Luciano Mori"
+  description="Monthly notes on what I am building, breaking, and learning. Generalized so anyone can read them without internal context."
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="section-eyebrow">Work Log</p>
+      <h1>Monthly notes from the field</h1>
+      <p class="lead">What I am building, breaking, and learning. Newest at the top.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      {entries.length === 0 ? (
+        <p style="text-align:center; color:var(--page-fg-soft);">No entries published yet.</p>
+      ) : (
+        <ul class="entry-list">
+          {entries.map(entry => {
+            const formatted = entry.data.monthStart.toLocaleDateString("en-CA", {
+              year: "numeric",
+              month: "long",
+              timeZone: "UTC",
+            });
+            return (
+              <li>
+                <a href={`/work-log/${entry.slug}`}>
+                  <p class="entry-meta">{formatted}</p>
+                  <h2 class="entry-title">{entry.data.title}</h2>
+                  {entry.data.summary && <p class="entry-headline">{entry.data.summary}</p>}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>

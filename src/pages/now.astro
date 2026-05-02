@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const latest = (await getCollection("work-log", entry => !entry.data.draft))
+  .sort((a, b) => b.data.monthStart.getTime() - a.data.monthStart.getTime())
+  .slice(0, 1)[0];
+
+if (!latest) throw new Error("No work-log entries found");
+
+const { Content } = await latest.render();
+const formatted = latest.data.monthStart.toLocaleDateString("en-CA", {
+  year: "numeric",
+  month: "long",
+  timeZone: "UTC",
+});
+---
+<BaseLayout
+  title={`Now — Eng. Luciano Mori (${formatted})`}
+  description={latest.data.title}
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="section-eyebrow">Now</p>
+      <h1>What I'm working on</h1>
+      <p class="lead">{formatted} · monthly recap. Generalized lessons from the field, no internal context.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <h2>{latest.data.title}</h2>
+        <Content />
+      </article>
+      <div class="article-footer">
+        <a href="/work-log">← Browse the full work log</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

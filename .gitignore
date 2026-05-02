@@ -13,3 +13,12 @@ gen-lang-client*.json
 
 # Local data dumps from scripts/gsc-pull.py
 data/
+
+# Astro build artifacts
+dist/
+.astro/
+node_modules/
+
+# OS noise
+.DS_Store
+Thumbs.db

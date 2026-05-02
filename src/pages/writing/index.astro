@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("writing", entry => !entry.data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+<BaseLayout
+  title="Writing — Eng. Luciano Mori"
+  description="Long-form writing on cloud infrastructure, DevSecOps, and AI engineering."
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="section-eyebrow">Writing</p>
+      <h1>Long-form notes from real work</h1>
+      <p class="lead">Cloud infrastructure, DevSecOps, agentic engineering. Less polished than a blog, more organized than a wiki.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      {articles.length === 0 ? (
+        <p style="text-align:center; color:var(--page-fg-soft);">No articles published yet. Check the <a href="/work-log">work log</a> for the weekly recap.</p>
+      ) : (
+        <ul class="entry-list">
+          {articles.map(article => {
+            const formatted = article.data.pubDate.toLocaleDateString("en-CA", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+              timeZone: "UTC",
+            });
+            return (
+              <li>
+                <a href={`/writing/${article.slug}`}>
+                  <p class="entry-meta">{formatted}</p>
+                  <h2 class="entry-title">{article.data.title}</h2>
+                  <p class="entry-headline">{article.data.description}</p>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>

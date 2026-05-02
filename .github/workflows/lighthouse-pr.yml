@@ -1,9 +1,8 @@
 name: Lighthouse (PR preview)
 
-# Audits the PR's checkout via lighthouse-ci's static-dist-dir mode
-# (no preview URL needed — lhci spins up its own static server).
-# continue-on-error keeps the PR mergeable even on regressions; the
-# action posts a comment with scores + a public report URL for review.
+# Audits the PR's checkout via lighthouse-ci's static-dist-dir mode against
+# the Astro build output (dist/). Continues on regression so PRs stay mergeable;
+# the action posts a comment with scores + a public report URL for review.
 
 on:
   pull_request:
@@ -23,8 +22,14 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
 
-      - name: Run Lighthouse on PR checkout
+      - name: Run Lighthouse on dist/
         uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: .lighthouserc.pr.json

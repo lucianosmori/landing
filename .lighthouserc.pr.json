@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": ".",
+      "staticDistDir": "dist",
       "numberOfRuns": 1,
       "settings": {
         "preset": "desktop",

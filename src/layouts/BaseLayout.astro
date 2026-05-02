@@ -1,0 +1,129 @@
+---
+import "../styles/additions.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Fab from "../components/Fab.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: "website" | "profile" | "article";
+  showJsonLd?: boolean;
+}
+
+const {
+  title,
+  description = "Sr. DevOps Engineer shipping cost-efficient AI workflows on secure cloud infrastructure across AWS, Azure, GCP & IBM. 100+ verified Credly badges, Snyk × Black Hat USA 2025 speaker.",
+  ogImage = "https://lucianomori.cloud/images/blackhat.jpeg",
+  ogType = "website",
+  showJsonLd = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <title>{title}</title>
+  <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#10b981" />
+  <meta name="description" content={description} />
+  <meta name="author" content="Luciano S. Mori" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="Luciano Mori" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:alt" content="Luciano Mori representing Snyk at Black Hat USA 2025" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <link rel="stylesheet" href="/style.css" />
+
+  {showJsonLd && (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://lucianomori.cloud/#person",
+          "name": "Luciano S. Mori",
+          "givenName": "Luciano",
+          "familyName": "Mori",
+          "honorificPrefix": "Eng.",
+          "jobTitle": "Senior DevOps Engineer",
+          "description": "Sr. DevOps Engineer specializing in cost-efficient AI workflows on secure cloud infrastructure across AWS, Azure, Google Cloud and IBM Cloud.",
+          "url": "https://lucianomori.cloud/",
+          "image": "https://lucianomori.cloud/images/blackhat.jpeg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ottawa",
+            "addressRegion": "ON",
+            "addressCountry": "CA"
+          },
+          "knowsAbout": [
+            "Cloud Architecture", "DevOps", "DevSecOps",
+            "Amazon Web Services", "Microsoft Azure", "Google Cloud Platform", "IBM Cloud",
+            "Terraform", "GitHub Actions",
+            "Generative AI", "Agentic AI", "Retrieval-Augmented Generation",
+            "Cybersecurity", "Snyk"
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/in/lucianosmori/",
+            "https://github.com/lucianosmori",
+            "https://www.credly.com/users/luciano-s-mori/badges"
+          ],
+          "alumniOf": { "@type": "Organization", "name": "Snyk", "url": "https://snyk.io/" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lucianomori.cloud/#website",
+          "url": "https://lucianomori.cloud/",
+          "name": "Luciano Mori",
+          "description": "Personal site of Eng. Luciano Mori — Sr. DevOps Engineer.",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://lucianomori.cloud/#person" }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://lucianomori.cloud/#profilepage",
+          "url": "https://lucianomori.cloud/",
+          "mainEntity": { "@id": "https://lucianomori.cloud/#person" },
+          "isPartOf": { "@id": "https://lucianomori.cloud/#website" }
+        }
+      ]
+    })} />
+  )}
+
+  <script is:inline>
+    // Theme: auto by local hour, persisted to localStorage. Runs before paint to avoid FOUC.
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var h = new Date().getHours();
+        var auto = (h >= 19 || h < 7) ? 'dark' : 'light';
+        document.documentElement.dataset.theme = stored || auto;
+      } catch (e) { /* keep dark default */ }
+    })();
+  </script>
+</head>
+<body>
+  <Nav />
+  <main class="site-main">
+    <slot />
+  </main>
+  <Footer />
+  <Fab />
+</body>
+</html>

@@ -1,0 +1,80 @@
+---
+---
+<section class="section" id="certs">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="section-eyebrow">Certifications &amp; Skills</p>
+        <h2 class="section-title">Verified credentials.</h2>
+      </div>
+      <a class="section-lead section-lead-link" href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" rel="noreferrer">
+        Every badge links to its Credly verification. All current, all verifiable.
+      </a>
+    </div>
+    <div class="cert-filters" id="certFilters">
+      <button class="cert-filter active" data-filter="all">All</button>
+      <button class="cert-filter" data-filter="aws">AWS</button>
+      <button class="cert-filter" data-filter="azure">Azure</button>
+      <button class="cert-filter" data-filter="gcp">GCP</button>
+      <button class="cert-filter" data-filter="github">GitHub</button>
+      <button class="cert-filter" data-filter="ibm">IBM</button>
+    </div>
+    <div class="cert-grid" id="certGrid">
+      <div class="cert-item" data-vendor="aws">
+        <a class="cert-link" href="https://www.credly.com/badges/34314c41-0dfd-4100-a62f-4a0cee4b48a2" target="_blank" rel="noreferrer"><div class="cert-badge aws">AWS</div></a>
+        <span class="cert-label">AWS Solutions<br/>Architect – Associate</span>
+      </div>
+      <div class="cert-item" data-vendor="aws">
+        <a class="cert-link" href="https://www.credly.com/badges/51bf269e-c622-46c1-a2a3-9b6866310016/public_url" target="_blank" rel="noreferrer"><div class="cert-badge aws">AWS</div></a>
+        <span class="cert-label">AWS Developer<br/>– Associate</span>
+      </div>
+      <div class="cert-item" data-vendor="azure">
+        <a class="cert-link" href="https://www.credly.com/badges/37864c3e-0f05-45a6-800f-2fe3bce7c302/public_url" target="_blank" rel="noreferrer"><div class="cert-badge azure">Azure</div></a>
+        <span class="cert-label">Azure<br/>Fundamentals</span>
+      </div>
+      <div class="cert-item" data-vendor="github">
+        <a class="cert-link" href="https://www.credly.com/badges/bdc4d615-8cfe-43ec-a09e-bb65e9b08ee4/public_url" target="_blank" rel="noreferrer"><div class="cert-badge github">Github</div></a>
+        <span class="cert-label">GitHub<br/>Actions</span>
+      </div>
+      <div class="cert-item" data-vendor="github">
+        <a class="cert-link" href="https://www.credly.com/badges/b2027b4d-f8cf-4da7-9ac7-6131ee0acd57" target="_blank" rel="noreferrer"><div class="cert-badge github">Github</div></a>
+        <span class="cert-label">GitHub<br/>Copilot</span>
+      </div>
+      <div class="cert-item" data-vendor="gcp">
+        <a class="cert-link" href="https://www.credly.com/badges/5884c181-0e19-485d-8c73-94a2aa72f1f3/public_url" target="_blank" rel="noreferrer"><div class="cert-badge gcp">GCP</div></a>
+        <span class="cert-label">Google Cloud<br/>Digital Leader</span>
+      </div>
+      <div class="cert-item" data-vendor="gcp">
+        <a class="cert-link" href="https://www.credly.com/badges/3e18546e-aa84-4ffc-a690-ffc83b967244/public_url" target="_blank" rel="noreferrer"><div class="cert-badge gcp">GCP</div></a>
+        <span class="cert-label">Google Cloud<br/>Gen AI Leader</span>
+      </div>
+      <div class="cert-item" data-vendor="ibm">
+        <a class="cert-link" href="https://www.credly.com/badges/f14aa122-8a96-4d2b-85f5-e4aee189fcee" target="_blank" rel="noreferrer"><div class="cert-badge ibm">IBM</div></a>
+        <span class="cert-label">IBM Application<br/>Developer</span>
+      </div>
+      <div class="cert-item" data-vendor="more">
+        <a class="cert-link" href="https://www.credly.com/users/luciano-s-mori/badges" target="_blank" rel="noreferrer"><div class="cert-badge more">+</div></a>
+        <span class="cert-label">More<br/>Certifications</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var filters = document.querySelectorAll('.cert-filter');
+    var items = document.querySelectorAll('#certGrid .cert-item');
+    if (!filters.length || !items.length) return;
+    filters.forEach(function (f) {
+      f.addEventListener('click', function () {
+        filters.forEach(function (x) { x.classList.remove('active'); });
+        f.classList.add('active');
+        var v = f.dataset.filter;
+        items.forEach(function (it) {
+          var vendor = it.dataset.vendor;
+          it.style.display = (v === 'all' || vendor === v || vendor === 'more') ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>

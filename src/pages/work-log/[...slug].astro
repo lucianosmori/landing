@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("work-log", entry => !entry.data.draft);
+  return entries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"work-log">;
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const formatted = entry.data.monthStart.toLocaleDateString("en-CA", {
+  year: "numeric",
+  month: "long",
+  timeZone: "UTC",
+});
+---
+<BaseLayout
+  title={`${formatted} — ${entry.data.title}`}
+  description={entry.data.title}
+  ogType="article"
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="section-eyebrow">{entry.data.month}</p>
+      <h1>{formatted}</h1>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <article class="prose">
+        <h2>{entry.data.title}</h2>
+        <Content />
+      </article>
+      <div class="article-footer">
+        <a href="/work-log">← All monthly entries</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Capabilities from "../components/Capabilities.astro";
+import Certifications from "../components/Certifications.astro";
+import CtaBanner from "../components/CtaBanner.astro";
+import { getCollection } from "astro:content";
+
+const latest = (await getCollection("work-log", entry => !entry.data.draft))
+  .sort((a, b) => b.data.monthStart.getTime() - a.data.monthStart.getTime())
+  .slice(0, 1)[0];
+---
+<BaseLayout
+  title="Eng. Luciano Mori — Sr. DevOps · Cloud, AI & Security"
+  ogType="profile"
+  showJsonLd={true}
+>
+  <Hero />
+  <Capabilities />
+  <Certifications />
+
+  {latest && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">Now</p>
+            <h2 class="section-title">What I'm working on.</h2>
+          </div>
+          <p class="section-lead">A monthly note from the field. Generalized lessons, no internal context.</p>
+        </div>
+        <div class="now-callout">
+          <div>
+            <p class="now-meta">{latest.data.monthStart.toLocaleDateString("en-CA", { year: "numeric", month: "long", timeZone: "UTC" })}</p>
+            <p class="now-headline">{latest.data.title}</p>
+          </div>
+          <a class="now-cta" href="/now">
+            Read the month
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CtaBanner />
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    // Cert counter speedometer
+    var counter = document.getElementById('certCount');
+    if (counter) {
+      var fallback = parseInt(counter.dataset.target, 10) || 111;
+      var rafId = null;
+      var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+      var animateTo = function (target, duration) {
+        if (rafId) cancelAnimationFrame(rafId);
+        var from = parseInt(counter.textContent, 10) || 0;
+        if (from === target) return;
+        var start = performance.now();
+        var tick = function (now) {
+          var t = Math.min(1, (now - start) / duration);
+          counter.textContent = Math.round(from + (target - from) * easeOut(t));
+          if (t < 1) rafId = requestAnimationFrame(tick);
+        };
+        rafId = requestAnimationFrame(tick);
+      };
+      animateTo(fallback, 1600);
+      var ctrl = new AbortController();
+      var timeout = setTimeout(function () { ctrl.abort(); }, 3000);
+      fetch('https://www.credly.com/users/luciano-s-mori/badges.json', { signal: ctrl.signal })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (d) {
+          clearTimeout(timeout);
+          var n = d && d.metadata && d.metadata.total_count;
+          if (Number.isFinite(n) && n > 0 && n !== fallback) animateTo(n, 700);
+        })
+        .catch(function () { clearTimeout(timeout); });
+    }
+
+    // BlackHat spotlight: hover/focus the hero "2025" → highlight the featured card
+    var bhMeta = document.getElementById('bhMeta');
+    var bhCard = document.getElementById('featured-blackhat');
+    if (bhMeta && bhCard) {
+      bhMeta.addEventListener('mouseenter', function () { bhCard.classList.add('is-spotlit'); });
+      bhMeta.addEventListener('mouseleave', function () { bhCard.classList.remove('is-spotlit'); });
+      bhMeta.addEventListener('focus',     function () { bhCard.classList.add('is-spotlit'); });
+      bhMeta.addEventListener('blur',      function () { bhCard.classList.remove('is-spotlit'); });
+      bhMeta.addEventListener('click', function (e) {
+        e.preventDefault();
+        bhCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        bhCard.classList.add('is-spotlit');
+        setTimeout(function () { bhCard.classList.remove('is-spotlit'); }, 1600);
+      });
+    }
+  })();
+</script>
