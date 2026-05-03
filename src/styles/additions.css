@@ -300,3 +300,28 @@ body {
 }
 .prose pre,
 .prose table { clear: left; }
+
+/* Anchor link icons appended to headings (Confluence/GitHub-style) */
+.prose h2 .anchor-link,
+.prose h3 .anchor-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4em;
+  vertical-align: middle;
+  color: var(--brand-green-dark);
+  opacity: 0;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+[data-theme="dark"] .prose h2 .anchor-link,
+[data-theme="dark"] .prose h3 .anchor-link {
+  color: var(--brand-green-bright);
+}
+.prose h2:hover .anchor-link,
+.prose h3:hover .anchor-link,
+.prose .anchor-link:focus { opacity: 0.7; }
+.prose .anchor-link:hover { opacity: 1; }
+@media (hover: none) {
+  .prose h2 .anchor-link,
+  .prose h3 .anchor-link { opacity: 0.4; }
+}
