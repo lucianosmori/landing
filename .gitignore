@@ -22,3 +22,6 @@ node_modules/
 # OS noise
 .DS_Store
 Thumbs.db
+
+# Local-only Claude Code instructions (style guides, drafting notes)
+CLAUDE.local.md
