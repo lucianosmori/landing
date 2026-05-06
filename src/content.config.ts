@@ -23,6 +23,10 @@ const writing = defineCollection({
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     heroImage: z.string().url().optional(),
+    heroImageAlt: z.string().optional(),
+    heroImageWidth: z.number().int().positive().optional(),
+    heroImageHeight: z.number().int().positive().optional(),
+    heroImageType: z.string().optional(),
   }),
 });
 

@@ -5,6 +5,10 @@ pubDate: 2026-05-06
 tags: [openclaw, oci, free-tier, agentic, devops]
 draft: false
 heroImage: https://lucianomori.cloud/images/adolfo-lobster.jpg
+heroImageAlt: AI-rendered cartoon lobster perched on Luciano's shoulder while he eats dinner; the lobster wears an OpenClaw badge.
+heroImageWidth: 3072
+heroImageHeight: 2688
+heroImageType: image/jpeg
 ---
 
 <figure class="hero-figure">
