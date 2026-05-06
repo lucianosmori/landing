@@ -301,6 +301,25 @@ body {
 .prose pre,
 .prose table { clear: left; }
 
+/* Article hero figure: full-bleed photograph above the lead paragraph */
+.prose .hero-figure {
+  margin: 0 0 1.6em;
+  padding: 0;
+}
+.prose .hero-figure img {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  border-radius: 8px;
+}
+.prose .hero-figure figcaption {
+  font-size: 13.5px;
+  color: var(--page-fg-soft);
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
 /* Anchor link icons appended to headings (Confluence/GitHub-style) */
 .prose h2 .anchor-link,
 .prose h3 .anchor-link {
