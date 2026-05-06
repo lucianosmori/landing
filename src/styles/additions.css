@@ -301,23 +301,29 @@ body {
 .prose pre,
 .prose table { clear: left; }
 
-/* Article hero figure: full-bleed photograph above the lead paragraph */
+/* Article hero figure: portrait-friendly, centered, capped so a tall photo
+   doesn't dominate the column. Scales down on narrow screens. */
 .prose .hero-figure {
-  margin: 0 0 1.6em;
+  margin: 0 auto 1.8em;
   padding: 0;
+  text-align: center;
 }
 .prose .hero-figure img {
-  display: block;
+  display: inline-block;
   width: 100%;
-  max-width: 760px;
+  max-width: 380px;
   height: auto;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 .prose .hero-figure figcaption {
   font-size: 13.5px;
   color: var(--page-fg-soft);
-  margin-top: 0.5em;
+  margin-top: 0.6em;
   font-style: italic;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .prose .hero-figure img { max-width: 88%; }
 }
 
 /* Anchor link icons appended to headings (Confluence/GitHub-style) */
