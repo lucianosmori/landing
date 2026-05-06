@@ -327,7 +327,8 @@ body {
 }
 
 /* Centered TL;DR quote that opens a piece, lighter weight than a normal
-   blockquote (no bar, no surface). */
+   blockquote (no bar, no surface). Tight margins so it sits close to the
+   surrounding text. */
 .prose .lead-quote {
   text-align: center;
   font-size: 17.5px;
@@ -335,7 +336,7 @@ body {
   border-left: none;
   background: transparent;
   padding: 0 6%;
-  margin: 1.4em auto 2.2em;
+  margin: 0.55em auto 0.9em;
   max-width: 680px;
   color: var(--page-fg);
   font-style: normal;
@@ -343,7 +344,8 @@ body {
 }
 
 /* Mid-section pull-quote: display font, brand color, no quotation marks,
-   centered to break up the prose visually. Max two lines of text. */
+   centered to break up the prose visually. Max two lines of text. Margins
+   tightened so the quote reads as part of the flow, not a callout panel. */
 .prose .pull-quote {
   text-align: center;
   font-size: 22px;
@@ -354,14 +356,14 @@ body {
   color: var(--brand-green-dark);
   border-left: none;
   background: transparent;
-  padding: 1.2em 4%;
-  margin: 1.8em auto;
+  padding: 0.45em 4%;
+  margin: 0.7em auto;
   max-width: 640px;
   border-radius: 0;
 }
 [data-theme="dark"] .prose .pull-quote { color: var(--brand-green-bright); }
 @media (max-width: 600px) {
-  .prose .pull-quote { font-size: 19px; padding: 1em 2%; }
+  .prose .pull-quote { font-size: 19px; padding: 0.4em 2%; }
 }
 
 /* Anchor link icons appended to headings (Confluence/GitHub-style) */

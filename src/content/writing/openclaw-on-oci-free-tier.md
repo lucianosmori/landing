@@ -37,6 +37,8 @@ The assistant is named Adolfo (Project Hail Mary's Rocky, with a faded Johnny Si
   </svg>
 </figure>
 
+Three constraints fall out of "Always Free" the moment you take it seriously. Tailscale-only ingress removes the public-internet attack surface, the cert dance, and the question of whether any given probe is hostile or curious. Single VM means there is nothing to scale out because there is no second box, which forces every feature to fit inside a fixed process budget. And Always-Free reaps any instance that goes idle for seven days, so the cron jobs that make the assistant useful (morning summary, daily work log, group icebreakers) double as the heartbeat that keeps the host alive.
+
 ```
 shell
 ├── VM.Standard.A1.Flex   4 OCPU / 24 GB
@@ -45,15 +47,7 @@ shell
 └── single VM             everything colocated
 ```
 
-Three constraints fall out of "Always Free" the moment you take it seriously. Tailscale-only ingress removes the public-internet attack surface, the cert dance, and the question of whether any given probe is hostile or curious. Single VM means there is nothing to scale out because there is no second box, which forces every feature to fit inside a fixed process budget. And Always-Free reaps any instance that goes idle for seven days, so the cron jobs that make the assistant useful (morning summary, daily work log, group icebreakers) double as the heartbeat that keeps the host alive.
-
-<blockquote class="pull-quote">
-
-What you are paying instead of dollars is attention.
-
-</blockquote>
-
-The free tier is a contract: stay inside the box, keep the box warm, do not paint yourself into a corner that requires a bigger box to get out of. None of these are difficult on their own. Together they shape the architecture more than any technical choice would. The whole stack is provisioned in Terraform, so if the box ever does get reaped, a `terraform apply` brings it back and an idempotent deploy script puts the assistant back on top.
+What you are paying instead of dollars is attention. The free tier is a contract: stay inside the box, keep the box warm, do not paint yourself into a corner that requires a bigger box to get out of. None of these are difficult on their own. Together they shape the architecture more than any technical choice would. The whole stack is provisioned in Terraform, so if the box ever does get reaped, a `terraform apply` brings it back and an idempotent deploy script puts the assistant back on top.
 
 ## The provider cascade
 
