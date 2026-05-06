@@ -4,17 +4,21 @@ description: "An AI assistant on $0/month infrastructure: open-source middleware
 pubDate: 2026-05-06
 tags: [openclaw, oci, free-tier, agentic, devops]
 draft: false
-heroImage: https://lucianomori.cloud/images/adolfo-lobster.png
+heroImage: https://lucianomori.cloud/images/adolfo-lobster.jpg
 ---
 
 <figure class="hero-figure">
-  <img src="/images/adolfo-lobster.png" alt="Cartoon lobster perched on Luciano's shoulder, riffing on Project Hail Mary's Rocky." />
+  <img src="/images/adolfo-lobster.jpg" alt="AI-rendered cartoon lobster perched on Luciano's shoulder while he eats dinner; the lobster wears an OpenClaw badge." />
   <figcaption>Adolfo, riding shotgun.</figcaption>
 </figure>
 
-**TL;DR.** OpenClaw is open-source. Oracle's `VM.Standard.A1.Flex` is free forever. Stitched together with Terraform, you get a personal multi-channel AI assistant that bills you exactly `$0.00` a day. The pitch ends there. The reality is that you have now adopted a small AI that needs to live on a leash. Its competence is bounded by whichever LLM you wire into the back, and the *front* is a stack of YAML, markdown system prompts, and config fields that misbehave in interesting ways. After living with it for a few months, the strange conclusion I keep landing on is that this pile of middleware and spaghetti `.md` files is, structurally, what the current wave of "AI" actually *is*. Models are the engine. The leash, the harness, and the config that tells the engine when to shut up: that is the product.
+<blockquote class="lead-quote">
 
-The assistant is named Adolfo (Project Hail Mary's Rocky, with a faded Johnny Silverhand overlay). It answers DMs on Telegram and Discord, hangs out in four WhatsApp groups, and sends me a daily summary at 7 a.m. The lobster is a process. The shell is the VM. This is what it actually takes to keep them both alive.
+**TL;DR.** OpenClaw is open-source. Oracle's `VM.Standard.A1.Flex` is free forever. Stitched together with Terraform, you get a personal multi-channel AI assistant that bills you exactly `$0.00` a day. The pitch ends there. The reality is that you have now adopted a small AI that needs to live on a leash, and the leash is more interesting than the model.
+
+</blockquote>
+
+The assistant is named Adolfo (Project Hail Mary's Rocky, with a faded Johnny Silverhand overlay). It answers DMs on Telegram and Discord, hangs out in four WhatsApp groups, and sends me a daily summary at 7 a.m. The lobster is a process. The shell is the VM. After living with it for a few months, the strange conclusion I keep landing on is that this pile of middleware and spaghetti `.md` files is, structurally, what the current wave of "AI" actually *is*. Models are the engine. The leash, the harness, and the config telling the engine when to shut up are the product.
 
 ## The shell that costs nothing but isn't free
 
@@ -41,17 +45,15 @@ shell
 └── single VM             everything colocated
 ```
 
-Three constraints fall out of "Always Free" the moment you take it seriously.
+Three constraints fall out of "Always Free" the moment you take it seriously. Tailscale-only ingress removes the public-internet attack surface, the cert dance, and the question of whether any given probe is hostile or curious. Single VM means there is nothing to scale out because there is no second box, which forces every feature to fit inside a fixed process budget. And Always-Free reaps any instance that goes idle for seven days, so the cron jobs that make the assistant useful (morning summary, daily work log, group icebreakers) double as the heartbeat that keeps the host alive.
 
-**Tailscale-only ingress simplifies a lot.** No public ports means no DDoS surface, no Let's Encrypt cert dance, no fail2ban tuning, no judgment calls about whether a probe is hostile or curious. SSH and the OpenClaw web UI both ride Tailscale. Anything that wants to reach the box has to be on my tailnet. For a personal assistant, that is the right default. The box does not need to be on the public internet to be useful to me.
+<blockquote class="pull-quote">
 
-**Single VM forces colocation discipline.** Database, gateway, channel adapters, cron, memory store, web UI: all on one box. There is nothing to "scale out" because there is no second box. Surprisingly liberating. Most decisions about which features to add reduce to *does this fit in the existing process budget?*, and the answer is usually yes, because the assistant is one user serving one user.
+What you are paying instead of dollars is attention.
 
-**The Always-Free reaper is real.** Oracle reaps an instance that is genuinely idle for seven days. The cron jobs that make the assistant useful (morning summary, daily work log, group icebreakers) also keep the instance warm enough that Oracle leaves it alone. That is not a coincidence. It is the only design that satisfies both constraints. The bot's heartbeat and the host's survival heartbeat happen to be the same heartbeat.
+</blockquote>
 
-What you are paying instead of dollars is *attention*. The free tier is a contract: stay inside the box, keep the box warm, do not paint yourself into a corner that requires a bigger box to get out of. None of these are difficult on their own. Together they shape the architecture more than any technical choice would.
-
-The whole thing is provisioned in Terraform: VM, networking, security lists, Tailscale subnet routing. If the box gets reaped, a `terraform apply` brings it back, and an idempotent deploy script puts the assistant back on top. Reproducibility is cheap insurance against an Always-Free reaping you forgot was on the calendar.
+The free tier is a contract: stay inside the box, keep the box warm, do not paint yourself into a corner that requires a bigger box to get out of. None of these are difficult on their own. Together they shape the architecture more than any technical choice would. The whole stack is provisioned in Terraform, so if the box ever does get reaped, a `terraform apply` brings it back and an idempotent deploy script puts the assistant back on top.
 
 ## The provider cascade
 
@@ -68,20 +70,22 @@ The whole thing is provisioned in Terraform: VM, networking, security lists, Tai
 
 The hard part of running an assistant on free-tier infrastructure is not the infrastructure. It is the inference. Models are the actual recurring cost, and "free" inference comes with rate limits, randomly-dropped sessions, and the occasional `410` with no body and no log line.
 
-The cascade I landed on:
-
 | Tier | What it is | Used for |
 |------|------------|----------|
 | Reasoning | A frontier-model CLI behind subscription OAuth | DM thinking, hard cron tasks |
-| Default chat | Several free-tier hosted open-weights models | WhatsApp groups, fast turns |
-| Cheap fast | A second-tier hosted Google model line | Cron icebreakers, summaries |
-| Last resort | Specialty fast-inference providers | When everything else times out |
+| Default chat | Free-tier hosted models (Kimi K2.5, GLM-5.1, Qwen3-Coder, Nemotron via NVIDIA NIM) | WhatsApp groups, fast turns |
+| Cheap fast | Gemini 2.5 Flash and Pro | Cron icebreakers, summaries |
+| Last resort | Cerebras Qwen-3-235B, Groq Llama-4-Scout | When everything else times out |
 
-The reasoning tier deliberately does not run through an API key. Going through the CLI's subscription OAuth means inference counts against my flat-rate plan, which is what I am already paying for. The split also lets me reserve the heaviest model for DM conversations (where multi-turn context preservation matters the most) and keep group replies on cheaper free-tier models that ship answers in under three seconds.
+The reasoning tier deliberately does not run through an API key. Going through the CLI's subscription OAuth means inference counts against my flat-rate plan, which is what I am already paying for. The split also lets me reserve the heaviest model for DM conversations, where multi-turn context preservation matters most, and keep group replies on cheaper free-tier models that ship answers in under three seconds.
 
-The mechanism that makes this stack actually work is the **fallback chain**. Each cron job and each agent has an explicit, ordered list of LLM backends. The chain reads roughly `primary → fallback-1 → fallback-2 → … → last-resort`, and the runtime walks it any time the current candidate errors, times out, or returns garbage. In practice the four critical crons (morning summary, daily work log, email rollup, weekly capability reminder) all carry the same eight-deep chain: one frontier-model CLI tier, four free-tier hosted open-weights models, two Google variants, and a specialty fast-inference provider as the last resort. Empirically the primary free model fails at least once a day with a `410` and no body. The chain catches it inside a minute, and the morning summary still lands at 7 a.m.
+The mechanism that makes this stack actually work is the **fallback chain**. Each cron and each agent has an explicit, ordered list of LLM backends; the runtime walks it any time the current candidate errors, times out, or returns garbage. The four critical crons all carry the same eight-deep chain: one frontier-model CLI tier, four free-tier hosted models, two Google variants, and a specialty fast-inference provider as the last resort. Empirically Kimi K2.5 returns a `410` at least once a day, and the chain catches it inside a minute.
 
-The chain is configured per-cron in OpenClaw's `payload.fallbacks` field, which is not surfaced in the CLI's `--help`. I found it by greping the `dist/` directory for the runtime function that reads it (`resolveCronFallbacksOverride`) and documented the field in the project notes so I would not relearn it on the next outage. This is the kind of detail that sounds like trivia and turns out to be load-bearing. Without the chain, every transient provider hiccup becomes a missed delivery and a quiet "did the bot break again?" worry. With the chain, the bot is more reliable than any single LLM behind it.
+<blockquote class="pull-quote">
+
+With the chain, the bot is more reliable than any single LLM behind it.
+
+</blockquote>
 
 If "free-tier infrastructure with paid inference" sounds slightly cheating, fair. The point is not that nothing has costs. The point is that costs are visible, capped, and live where the value is, in the model rather than the shell.
 
@@ -107,15 +111,17 @@ If "free-tier infrastructure with paid inference" sounds slightly cheating, fair
   </svg>
 </figure>
 
-Step back. The model itself is not doing anything special in this story. The reasoning model that drafts my morning email rollup is the same reasoning model anyone with a subscription can talk to in any browser. What makes Adolfo *Adolfo* is roughly twelve kilobytes of system prompt across `IDENTITY.md`, `TOOLS.md`, and the per-group `.md` files that say things like *"in mom's group reply to absolutely everything; in the Córdoba group adopt local slang and roast hard but no Hitler jokes."*
+The model itself is not doing anything special in this story. The reasoning model that drafts my morning email rollup is the same reasoning model anyone with a subscription can talk to in any browser. What makes Adolfo *Adolfo* is roughly twelve kilobytes of system prompt across `IDENTITY.md`, `TOOLS.md`, and per-group rules. It is the cron schedule. It is the eight-deep fallback chain. It is the exec policy that says the assistant can read but not write outside its workspace directory. It is hundreds of refusal-pattern test cases that taught the bot to decline an off-color request without sounding like an HR memo. Iterated by hand, in markdown, in a directory I version like code.
 
-It is the cron schedule. It is the eight-deep fallback chain. It is the exec policy that says the assistant can read but not write outside its workspace directory. It is the trust model (one operator, no sandbox, full tools) written into a single config field. It is hundreds of refusal-pattern test cases that taught the bot to decline an off-color request without sounding like an HR memo. Iterated by hand, in markdown, in a directory I version like code.
+<blockquote class="pull-quote">
 
-The clearest place to feel this is in group chats. Adding the bot to a friends' group chat is a multiplier the first day. It ice-breaks dead threads, follows up on running jokes, references inside-baseball from previous conversations because it actually has memory of them. People notice. They start tagging it. Then a quieter day arrives where the room is doing fine without it, and the bot keeps replying anyway, and you realize you have built something that does not know when to be silent. The fix is not a smarter model. The fix is configuration. Per-group reply rates ("once per person, then silent until the operator writes again"), trigger words that hard-mute the bot for a fixed window (`cucha` for 48 hours, `a dormir` for 24 hours, swept by a cron job), and a soft-mute heuristic that goes quiet for the rest of the session if anyone tells the bot to shut up. Designing the off-switch took more iterations than designing the on-switch. The trade-off is unavoidable: a bot that is welcome ten times a day will, on the eleventh, be the most annoying member of the room. The leash exists because a free-running good model is a worse roommate than a leashed mediocre one.
+Models are the engine. The leash is the product.
 
-That is the product. The model is the engine. The leash, the harness, and the config telling the engine when to speak: that is where the personality, the safety, and the actual day-to-day usefulness live. The hype around AI right now is largely model launches, but the value people experience is shaped by middleware that nobody has named yet. OpenClaw is one such middleware. Cursor, Aider, n8n, the various agent frameworks: all of them are. The model is the steam engine. The locomotive, the rails, the timetable, and the conductor's whistle are the product you actually buy a ticket for. We are not yet very good at any of those.
+</blockquote>
 
-The two cheapest mistakes you make running this kind of stack illustrate the point. You assume a config flag that someone else set is sensible. You assume an OAuth token will not silently expire. Both will quietly take the bot down for hours. Both fixes are one line. Finding which line takes a day. The model has nothing to do with either.
+The clearest place to feel this is in group chats. Adding the bot to a friends' group is a multiplier on day one: it ice-breaks dead threads, follows up on running jokes, references inside-baseball from previous conversations because it actually has memory of them. Then a quieter day arrives where the room is doing fine without it, and the bot keeps replying anyway, and you realize you have built something that does not know when to be silent. The fix is not a smarter model. The fix is configuration: per-group reply rates, trigger words that hard-mute the bot for a fixed window, a soft-mute heuristic that goes quiet for the rest of the session if anyone tells it to shut up. Designing the off-switch took more iterations than designing the on-switch.
+
+The hype around AI right now is largely model launches, but the value people experience is shaped by middleware that nobody has named yet. OpenClaw is one such middleware. Cursor, Aider, n8n, the various agent frameworks are too. The model is the steam engine. The locomotive, the rails, the timetable, and the conductor's whistle are the product you actually buy a ticket for, and we are not yet very good at any of those.
 
 ## What free-tier teaches that paid infrastructure doesn't
 
