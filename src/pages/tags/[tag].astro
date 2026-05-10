@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+interface EntryRow {
+  type: "work-log" | "writing";
+  slug: string;
+  date: Date;
+  title: string;
+  summary?: string;
+}
+
+export async function getStaticPaths() {
+  const workLog = await getCollection("work-log", e => !e.data.draft);
+  const writing = await getCollection("writing", e => !e.data.draft);
+
+  const tagSet = new Set<string>();
+  for (const e of [...workLog, ...writing]) {
+    for (const tag of e.data.tags) tagSet.add(tag);
+  }
+
+  return [...tagSet].map(tag => {
+    const wl: EntryRow[] = workLog
+      .filter(e => e.data.tags.includes(tag))
+      .map(e => ({
+        type: "work-log",
+        slug: e.id,
+        date: e.data.monthStart,
+        title: e.data.title,
+        summary: e.data.summary,
+      }));
+    const w: EntryRow[] = writing
+      .filter(e => e.data.tags.includes(tag))
+      .map(e => ({
+        type: "writing",
+        slug: e.id,
+        date: e.data.pubDate,
+        title: e.data.title,
+        summary: e.data.description,
+      }));
+    const entries = [...wl, ...w].sort(
+      (a, b) => b.date.getTime() - a.date.getTime()
+    );
+    return { params: { tag }, props: { tag, entries } };
+  });
+}
+
+interface Props {
+  tag: string;
+  entries: EntryRow[];
+}
+const { tag, entries } = Astro.props;
+---
+<BaseLayout
+  title={`Tag: ${tag}`}
+  description={`Posts tagged "${tag}".`}
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="section-eyebrow">Tag</p>
+      <h1>#{tag}</h1>
+      <p class="lead">{entries.length} {entries.length === 1 ? "entry" : "entries"} tagged "{tag}".</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <ul class="entry-list">
+        {entries.map(entry => {
+          const formatted = entry.date.toLocaleDateString("en-CA", {
+            year: "numeric",
+            month: entry.type === "work-log" ? "long" : "short",
+            day: entry.type === "writing" ? "numeric" : undefined,
+            timeZone: "UTC",
+          });
+          const href = entry.type === "work-log"
+            ? `/work-log/${entry.slug}`
+            : `/writing/${entry.slug}`;
+          const prefix = entry.type === "writing" ? "Writing · " : "";
+          return (
+            <li>
+              <a href={href}>
+                <p class="entry-meta">{prefix}{formatted}</p>
+                <h2 class="entry-title">{entry.title}</h2>
+                {entry.summary && <p class="entry-headline">{entry.summary}</p>}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      <div class="article-footer">
+        <a href="/tags">← All tags</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

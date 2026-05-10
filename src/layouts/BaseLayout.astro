@@ -20,7 +20,7 @@ const DEFAULT_OG_IMAGE = "https://lucianomori.cloud/images/blackhat.jpeg";
 
 const {
   title,
-  description = "Sr. DevOps Engineer shipping cost-efficient AI workflows on secure cloud infrastructure across AWS, Azure, GCP & IBM. 100+ verified Credly badges, Snyk × Black Hat USA 2025 speaker.",
+  description = "Sr. DevOps Engineer. AWS + Terraform infrastructure, agentic AI workflows (MCP, GitHub Actions). 100+ Credly badges. Black Hat USA 2025 speaker.",
   ogImage = DEFAULT_OG_IMAGE,
   ogImageAlt,
   ogImageWidth,
@@ -32,7 +32,7 @@ const {
 
 const isDefaultOg = ogImage === DEFAULT_OG_IMAGE;
 const resolvedOgImageAlt = ogImageAlt ?? (isDefaultOg
-  ? "Luciano Mori representing Snyk at Black Hat USA 2025"
+  ? "Luciano Mori at Black Hat USA 2025"
   : title);
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
@@ -94,11 +94,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
             "addressCountry": "CA"
           },
           "knowsAbout": [
-            "Cloud Architecture", "DevOps", "DevSecOps",
+            "Cloud Architecture", "DevOps", "DevSecOps", "Platform Engineering",
             "Amazon Web Services", "Microsoft Azure", "Google Cloud Platform", "IBM Cloud",
-            "Terraform", "GitHub Actions",
-            "Generative AI", "Agentic AI", "Retrieval-Augmented Generation",
-            "Cybersecurity", "Snyk"
+            "Terraform", "GitHub Actions", "CI/CD",
+            "Generative AI", "Agentic AI", "Model Context Protocol", "Retrieval-Augmented Generation",
+            "Cybersecurity", "Application Security"
           ],
           "sameAs": [
             "https://www.linkedin.com/in/lucianosmori/",

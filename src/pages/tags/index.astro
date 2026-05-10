@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const workLog = await getCollection("work-log", e => !e.data.draft);
+const writing = await getCollection("writing", e => !e.data.draft);
+
+const tagCounts = new Map<string, number>();
+for (const e of [...workLog, ...writing]) {
+  for (const tag of e.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+const tags = [...tagCounts.entries()].sort(
+  (a, b) => b[1] - a[1] || a[0].localeCompare(b[0])
+);
+---
+<BaseLayout
+  title="Tags"
+  description="Browse work-log entries and writing by tech topic."
+>
+  <header class="page-header">
+    <div class="container">
+      <p class="section-eyebrow">Tags</p>
+      <h1>Browse by topic</h1>
+      <p class="lead">Tags applied across the work-log and long-form writing.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      {tags.length === 0 ? (
+        <p style="text-align:center; color:var(--page-fg-soft);">No tags yet.</p>
+      ) : (
+        <ul class="tag-list">
+          {tags.map(([tag, count]) => (
+            <li>
+              <a href={`/tags/${tag}`} class="tag-chip">
+                <span class="tag-name">#{tag}</span>
+                <span class="tag-count">{count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>

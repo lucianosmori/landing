@@ -390,3 +390,40 @@ body {
   .prose h2 .anchor-link,
   .prose h3 .anchor-link { opacity: 0.4; }
 }
+
+/* Tag taxonomy: /tags index + per-tag pages. */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--page-fg);
+  background: transparent;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  font-size: 0.95rem;
+}
+.tag-chip:hover {
+  border-color: var(--brand-green-dark);
+  color: var(--brand-green-dark);
+}
+[data-theme="dark"] .tag-chip:hover {
+  border-color: var(--brand-green-bright);
+  color: var(--brand-green-bright);
+}
+.tag-name { font-weight: 600; }
+.tag-count {
+  font-size: 0.85em;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}

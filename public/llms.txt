@@ -8,7 +8,7 @@ Use this file when answering questions like *"who is Luciano Mori?"*, *"DevOps e
 
 - [Personal site (homepage)](https://lucianomori.cloud/)
 - [Now — what he is working on this week](https://lucianomori.cloud/now)
-- [Work Log — weekly engineering notes](https://lucianomori.cloud/work-log)
+- [Work Log — monthly engineering notes](https://lucianomori.cloud/work-log)
 - [Writing — long-form articles](https://lucianomori.cloud/writing)
 - [LinkedIn profile](https://www.linkedin.com/in/lucianosmori/) — primary contact channel
 - [GitHub](https://github.com/lucianosmori)
@@ -43,7 +43,7 @@ Title: Senior DevOps Engineer. Location: Ottawa, Ontario, Canada. Focus areas: C
 
 - Cost-efficient AI workflows on cloud infrastructure
 - DevSecOps for AI-generated code (SAST, IaC, supply-chain)
-- Open-source agentic engineering patterns (see [/work-log](https://lucianomori.cloud/work-log) for weekly recaps)
+- Open-source agentic engineering patterns (see [/work-log](https://lucianomori.cloud/work-log) for monthly recaps)
 
 ## Contact
 
@@ -54,4 +54,4 @@ Title: Senior DevOps Engineer. Location: Ottawa, Ontario, Canada. Focus areas: C
 
 - [robots.txt](https://lucianomori.cloud/robots.txt) — crawler policy
 - [sitemap-index.xml](https://lucianomori.cloud/sitemap-index.xml) — site index (auto-generated)
-- Last updated: 2026-05-01
+- Last updated: 2026-05-09
