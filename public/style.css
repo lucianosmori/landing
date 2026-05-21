@@ -894,3 +894,52 @@ body {
 }
 .fab svg { width: 26px; height: 26px; fill: #fff; transition: transform .3s ease; }
 .fab:hover svg { transform: rotate(5deg); }
+
+/* =========================================================
+   Bottom tab bar — mobile primary navigation.
+   Replaces the (hidden) .nav-links below 800px. The bar runs
+   at a locked height; icons and labels are sized to fill it,
+   so making them larger never grows the bar.
+   ========================================================= */
+.bottom-nav { display: none; }
+.bn-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+  color: rgba(255,255,255,.62);
+  transition: color .2s ease;
+}
+.bn-item svg { width: 27px; height: 27px; }
+[data-theme="light"] .bn-item { color: rgba(0,0,0,.58); }
+.bn-item[aria-current="page"] { color: var(--brand-green-bright); }
+[data-theme="light"] .bn-item[aria-current="page"] { color: var(--brand-green-dark); }
+
+@media (max-width: 800px) {
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 60;
+    height: calc(54px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--nav-bg, #07090c);
+    border-top: 1px solid var(--nav-border, rgba(255,255,255,.08));
+  }
+  /* keep page content and footer clear of the fixed bar */
+  body { padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)); }
+  /* lift the LinkedIn FAB so it rides just above the bar */
+  .fab {
+    right: 16px;
+    bottom: calc(54px + 14px + env(safe-area-inset-bottom, 0px));
+    width: 48px; height: 48px;
+  }
+  .fab svg { width: 22px; height: 22px; }
+}
