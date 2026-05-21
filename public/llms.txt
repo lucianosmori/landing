@@ -37,7 +37,7 @@ Title: Senior DevOps Engineer. Location: Ottawa, Ontario, Canada. Focus areas: C
 ## Speaking & community
 
 - **Snyk × Black Hat USA 2025** — "Securing AI-Generated Code from Inception to Production". [Talk recap](https://www.linkedin.com/feed/update/urn:li:activity:7359673931240255488/)
-- Available for cloud & AI engagements through Q2 2026.
+- Available for cloud & AI engagements through Q3 2026.
 
 ## Current focus (May 2026)
 
