@@ -716,15 +716,18 @@ body {
 }
 .cert-link { text-decoration: none; }
 .cert-badge {
-  width: 84px; height: 84px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff;
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 22px;
-  box-shadow: 0 6px 16px rgba(0,0,0,.18);
-  transition: transform .3s ease, box-shadow .3s ease;
+  width: 90px; height: 90px;
+  display: block;
+  object-fit: contain;
+  transition: transform .3s ease, filter .3s ease;
   cursor: pointer;
+  filter: drop-shadow(0 5px 12px rgba(0,0,0,.18));
+}
+/* Dark theme: a faint light halo (drop-shadow follows each PNG's real
+   silhouette) so dark badges like GitHub's separate from the dark page. */
+[data-theme="dark"] .cert-badge {
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.22))
+          drop-shadow(0 6px 14px rgba(0,0,0,.55));
 }
 .cert-badge:hover {
   transform: translateY(-8px) scale(1.15);
@@ -735,18 +738,17 @@ body {
   50% { transform: translateY(-8px) scale(1.25); }
   100% { transform: translateY(-8px) scale(1.15); }
 }
-.cert-badge.aws    { background: linear-gradient(135deg,#FF9900,#FF6600); }
-.cert-badge.aws:hover    { box-shadow: 0 12px 30px rgba(255,153,0,.45); }
-.cert-badge.azure  { background: linear-gradient(135deg,#0078D4,#005A9E); font-size: 18px; }
-.cert-badge.azure:hover  { box-shadow: 0 12px 30px rgba(0,120,212,.45); }
-.cert-badge.gcp    { background: linear-gradient(135deg,#4285F4,#1A73E8); }
-.cert-badge.gcp:hover    { box-shadow: 0 12px 30px rgba(66,133,244,.45); }
-.cert-badge.github { background: linear-gradient(135deg,#24292e,#586069); font-size: 16px; }
-.cert-badge.github:hover { box-shadow: 0 12px 30px rgba(36,41,46,.55); }
-.cert-badge.ibm    { background: linear-gradient(135deg,#0062FF,#003DA5); }
-.cert-badge.ibm:hover    { box-shadow: 0 12px 30px rgba(0,98,255,.45); }
-.cert-badge.more   { background: linear-gradient(135deg,#6c757d,#495057); font-size: 26px; }
-.cert-badge.more:hover   { box-shadow: 0 12px 30px rgba(108,117,125,.5); }
+/* "More" is a see-all affordance, not a verifiable credential badge */
+.cert-badge.more {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#6c757d,#495057);
+  color: #fff;
+  font-family: var(--font-display); font-weight: 700; font-size: 30px;
+  filter: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,.18);
+}
+.cert-badge.more:hover { box-shadow: 0 12px 30px rgba(108,117,125,.5); }
 .cert-label {
   font-size: 12px;
   font-weight: 500;
