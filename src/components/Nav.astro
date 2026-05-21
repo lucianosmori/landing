@@ -14,12 +14,8 @@ const isActive = (href: string) => {
       <span class="brand-role">Sr. DevOps · Cloud · AI</span>
     </a>
     <div class="nav-links">
-      {path === "/" ? (
-        <>
-          <a href="#capabilities">Capabilities</a>
-          <a href="#certs">Certifications</a>
-        </>
-      ) : null}
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#certs">Certifications</a>
       <a href="/now" aria-current={isActive("/now") ? "page" : undefined}>Now</a>
       <a href="/work-log" aria-current={isActive("/work-log") ? "page" : undefined}>Work Log</a>
       <a href="/writing" aria-current={isActive("/writing") ? "page" : undefined}>Writing</a>
