@@ -1,0 +1,35 @@
+---
+/*
+  Horizontal feed card for the /work-log and /writing index lists.
+  Left side is one of: a hero photo (`image`), a raw inline SVG taken
+  from the entry's own content (`svg`), or the fallback glyph below.
+  Matches the homepage "Latest" cards' visual treatment.
+*/
+interface Props {
+  href: string;
+  meta: string;
+  title: string;
+  headline?: string;
+  image?: string;
+  imageAlt?: string;
+  svg?: string;
+}
+const { href, meta, title, headline, image, imageAlt, svg } = Astro.props;
+
+// Used only when an entry supplies neither a photo nor its own SVG.
+const FALLBACK_SVG = `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="16" y="10" width="48" height="60" rx="6"/><line x1="26" y1="26" x2="54" y2="26"/><line x1="26" y1="36" x2="54" y2="36"/><line x1="26" y1="46" x2="44" y2="46"/></svg>`;
+---
+<a class="feed-card" href={href}>
+  {image ? (
+    <div class="feed-visual feed-photo">
+      <img src={image} alt={imageAlt ?? title} width="480" height="300" loading="lazy" decoding="async" />
+    </div>
+  ) : (
+    <div class="feed-visual feed-icon" aria-hidden="true" set:html={svg ?? FALLBACK_SVG}></div>
+  )}
+  <div class="feed-body">
+    <p class="feed-meta">{meta}</p>
+    <h2 class="feed-title">{title}</h2>
+    {headline && <p class="feed-headline">{headline}</p>}
+  </div>
+</a>

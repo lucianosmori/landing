@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import FeedCard from "../../components/FeedCard.astro";
 import { getCollection } from "astro:content";
 
 const articles = (await getCollection("writing", entry => !entry.data.draft))
@@ -41,24 +42,24 @@ const articles = (await getCollection("writing", entry => !entry.data.draft))
           <p>Drafts in the kiln. Check the <a href="/work-log">work log</a> for the monthly recap meanwhile.</p>
         </div>
       ) : (
-        <ul class="entry-list">
-          {articles.map(article => {
-            const formatted = article.data.pubDate.toLocaleDateString("en-CA", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-              timeZone: "UTC",
-            });
-            return (
-              <li>
-                <a href={`/writing/${article.id}`}>
-                  <p class="entry-meta">{formatted}</p>
-                  <h2 class="entry-title">{article.data.title}</h2>
-                  <p class="entry-headline">{article.data.description}</p>
-                </a>
-              </li>
-            );
-          })}
+        <ul class="feed-list">
+          {articles.map(article => (
+            <li>
+              <FeedCard
+                href={`/writing/${article.id}`}
+                meta={article.data.pubDate.toLocaleDateString("en-CA", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  timeZone: "UTC",
+                })}
+                title={article.data.title}
+                headline={article.data.description}
+                image={article.data.heroImage?.replace(/^https:\/\/lucianomori\.cloud/, "")}
+                imageAlt={article.data.heroImageAlt ?? article.data.title}
+              />
+            </li>
+          ))}
         </ul>
       )}
     </div>

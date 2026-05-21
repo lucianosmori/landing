@@ -1,9 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import FeedCard from "../../components/FeedCard.astro";
 import { getCollection } from "astro:content";
 
 const entries = (await getCollection("work-log", entry => !entry.data.draft))
   .sort((a, b) => b.data.monthStart.getTime() - a.data.monthStart.getTime());
+
+// Pull the first section-figure SVG out of each entry's own markdown so
+// every card carries that month's icon rather than a shared one.
+const firstSvg = (body?: string) => body?.match(/<svg[\s\S]*?<\/svg>/i)?.[0];
 ---
 <BaseLayout
   title="Work Log"
@@ -22,23 +27,22 @@ const entries = (await getCollection("work-log", entry => !entry.data.draft))
       {entries.length === 0 ? (
         <p style="text-align:center; color:var(--page-fg-soft);">No entries published yet.</p>
       ) : (
-        <ul class="entry-list">
-          {entries.map(entry => {
-            const formatted = entry.data.monthStart.toLocaleDateString("en-CA", {
-              year: "numeric",
-              month: "long",
-              timeZone: "UTC",
-            });
-            return (
-              <li>
-                <a href={`/work-log/${entry.id}`}>
-                  <p class="entry-meta">{formatted}</p>
-                  <h2 class="entry-title">{entry.data.title}</h2>
-                  {entry.data.summary && <p class="entry-headline">{entry.data.summary}</p>}
-                </a>
-              </li>
-            );
-          })}
+        <ul class="feed-list">
+          {entries.map(entry => (
+            <li>
+              <FeedCard
+                href={`/work-log/${entry.id}`}
+                meta={entry.data.monthStart.toLocaleDateString("en-CA", {
+                  year: "numeric",
+                  month: "long",
+                  timeZone: "UTC",
+                })}
+                title={entry.data.title}
+                headline={entry.data.summary}
+                svg={firstSvg(entry.body)}
+              />
+            </li>
+          ))}
         </ul>
       )}
     </div>
