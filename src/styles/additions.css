@@ -408,6 +408,28 @@ body {
 .prose pre,
 .prose table { clear: left; }
 
+/* Aside figure: floats a small artifact (ASCII diagram, snippet) to the right
+   so prose wraps on its left. Overrides .prose pre's default `clear: left`. */
+.prose .aside-figure {
+  float: right;
+  max-width: 320px;
+  margin: 0.2em 0 0.6em 1.6em;
+  clear: none;
+}
+.prose .aside-figure pre {
+  margin: 0;
+  clear: none;
+  font-size: 0.78em;
+  line-height: 1.35;
+}
+@media (max-width: 700px) {
+  .prose .aside-figure {
+    float: none;
+    max-width: 100%;
+    margin: 0.8em 0;
+  }
+}
+
 /* Article hero figure: centered, capped so the photo sits as a feature
    rather than a banner. Scales down on narrow screens. */
 .prose .hero-figure {

@@ -45,4 +45,4 @@ Title: Senior DevOps Engineer. Location: Ottawa, Ontario, Canada. Focus areas: C
 
 - [robots.txt](https://lucianomori.cloud/robots.txt) — crawler policy
 - [sitemap.xml](https://lucianomori.cloud/sitemap.xml) — site index
-- Last updated: 2026-04-26
+- Last updated: 2026-05-23
