@@ -19,6 +19,9 @@ dist/
 .astro/
 node_modules/
 
+# Local working artifacts (screenshots, gen scripts, recordings)
+artifacts/
+
 # OS noise
 .DS_Store
 Thumbs.db
