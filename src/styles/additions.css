@@ -495,6 +495,89 @@ body {
   .prose .pull-quote { font-size: 19px; padding: 0.4em 2%; }
 }
 
+/* Top-of-article update banner: a loud, dated callout placed right
+   after the hero figure so a returning reader sees at-a-glance that
+   the piece has new material below. Strong brand-green border on
+   both sides + dated chip top-right + link to the update anchor. */
+.prose .update-banner {
+  position: relative;
+  border: 2px solid var(--brand-green-dark);
+  background: color-mix(in srgb, var(--brand-green-dark) 9%, transparent);
+  padding: 1.1em 1.3em 1em;
+  margin: 1em 0 1.6em;
+  border-radius: 6px;
+  font-size: 16.5px;
+  line-height: 1.55;
+}
+.prose .update-banner::before {
+  content: attr(data-updated);
+  position: absolute;
+  top: -0.85em;
+  left: 1em;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--page-bg);
+  background: var(--brand-green-dark);
+  padding: 0.25em 0.7em;
+  border-radius: 3px;
+  font-weight: 800;
+}
+.prose .update-banner p { margin: 0; }
+.prose .update-banner a {
+  font-weight: 700;
+}
+[data-theme="dark"] .prose .update-banner {
+  border-color: var(--brand-green-bright);
+  background: color-mix(in srgb, var(--brand-green-bright) 12%, transparent);
+}
+[data-theme="dark"] .prose .update-banner::before {
+  background: var(--brand-green-bright);
+  color: #0b1010;
+}
+
+/* Dated update block: a section appended to an older article when the
+   reality on the ground has shifted. Visually distinct from .lead-quote
+   (TL;DR opener) and .pull-quote (mid-section emphasis): left accent
+   bar in brand-green, tinted surface, and a small dated chip floated
+   to the top-right so the reader knows this is new material. */
+.prose .update-callout {
+  position: relative;
+  border-left: 3px solid var(--brand-green-dark);
+  background: color-mix(in srgb, var(--brand-green-dark) 6%, transparent);
+  padding: 1em 1.25em 0.85em;
+  margin: 1.1em 0 1.4em;
+  border-radius: 0 6px 6px 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.prose .update-callout::before {
+  content: attr(data-updated);
+  position: absolute;
+  top: -0.7em;
+  right: 0.9em;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--page-bg);
+  background: var(--brand-green-dark);
+  padding: 0.18em 0.55em;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.prose .update-callout p { margin: 0.3em 0; }
+.prose .update-callout p:first-child { margin-top: 0; }
+.prose .update-callout p:last-child { margin-bottom: 0; }
+[data-theme="dark"] .prose .update-callout {
+  border-left-color: var(--brand-green-bright);
+  background: color-mix(in srgb, var(--brand-green-bright) 10%, transparent);
+}
+[data-theme="dark"] .prose .update-callout::before {
+  background: var(--brand-green-bright);
+  color: #0b1010;
+}
+
 /* Anchor link icons appended to headings (Confluence/GitHub-style) */
 .prose h2 .anchor-link,
 .prose h3 .anchor-link {

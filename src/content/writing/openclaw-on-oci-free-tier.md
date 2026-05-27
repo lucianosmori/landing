@@ -4,17 +4,23 @@ description: "An AI assistant on $0/month infrastructure: open-source middleware
 pubDate: 2026-05-06
 tags: [openclaw, oci, free-tier, agentic, devops]
 draft: false
-heroImage: https://lucianomori.cloud/images/adolfo-lobster.jpg
-heroImageAlt: AI-rendered cartoon lobster perched on Luciano's shoulder while he eats dinner; the lobster wears an OpenClaw badge.
-heroImageWidth: 3072
-heroImageHeight: 2688
+heroImage: https://lucianomori.cloud/images/adolfo-lobster-mascot.jpg
+heroImageAlt: AI-rendered cartoon lobster perched on Luciano's shoulder while he eats dinner, with a small pixel-art orange Claude Code mascot sitting on the table in the foreground; the lobster wears an OpenClaw badge.
+heroImageWidth: 2048
+heroImageHeight: 2048
 heroImageType: image/jpeg
 ---
 
 <figure class="hero-figure">
-  <img src="/images/adolfo-lobster.jpg" alt="AI-rendered cartoon lobster perched on Luciano's shoulder while he eats dinner; the lobster wears an OpenClaw badge." />
-  <figcaption>Adolfo, riding shotgun.</figcaption>
+  <img src="/images/adolfo-lobster-mascot.jpg" alt="AI-rendered cartoon lobster perched on Luciano's shoulder while he eats dinner, with a small pixel-art orange Claude Code mascot sitting on the table in the foreground; the lobster wears an OpenClaw badge." />
+  <figcaption>Adolfo riding shotgun, with the Claude Code mascot finally pulled out of the fallback chain.</figcaption>
 </figure>
+
+<aside class="update-banner" data-updated="UPDATED 2026-05-27">
+
+**This piece has a May 2026 update.** The eight-deep free-tier fallback chain collapsed two weeks ago: Sonnet 4.6 max is now the workhorse, Opus 4.7 max stays pinned to Gmail triage and Hermes escalations, and the free-tier providers moved to fallback role. [Jump to the update ↓](#update-may-2026-sonnet-collapsed-the-chain)
+
+</aside>
 
 <blockquote class="lead-quote">
 
@@ -141,3 +147,43 @@ The hype around AI right now is largely model launches, but the value people exp
 Constraints make every decision visible. Always-Free forces the colocation question early. Tailscale-only forces the access question early. Subscription-rate inference forces the fallback chain early. Each of these is a question you would answer eventually anyway. The difference is whether you answer it before deploying or after the bot has gone mute in the family chat for four hours and your mother has texted you twice.
 
 The lobster is fine. The shell is fine. They both cost zero. The attention I pay instead is, in some sense, the fee. The side effect of paying it is that I now believe the future of "AI" is going to look much more like middleware than like model releases. The engine is impressive. You just cannot ride it without the harness.
+
+## Update, May 2026: Sonnet collapsed the chain
+
+<figure class="section-figure" aria-hidden="true">
+  <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+    <ellipse cx="14" cy="14" rx="5" ry="3" transform="rotate(-30 14 14)" />
+    <ellipse cx="22" cy="22" rx="5" ry="3" transform="rotate(-30 22 22)" />
+    <ellipse cx="30" cy="30" rx="5" ry="3" transform="rotate(-30 30 30)" />
+    <ellipse cx="38" cy="38" rx="5" ry="3" transform="rotate(-30 38 38)" />
+    <ellipse cx="46" cy="46" rx="6" ry="3.5" transform="rotate(-30 46 46)" fill="currentColor" stroke="none" opacity="0.85" />
+    <ellipse cx="58" cy="58" rx="5" ry="3" transform="rotate(-30 58 58)" />
+    <line x1="64" y1="64" x2="72" y2="72" />
+    <polyline points="68 66 72 72 66 68" />
+  </svg>
+</figure>
+
+<div class="update-callout" data-updated="Updated 2026-05-26">
+
+The eight-deep free-tier fallback chain collapsed about two weeks ago. Sonnet 4.6 at max thinking is now the default workhorse; Opus 4.7 max stays pinned to Gmail triage and Hermes escalations. The free-tier providers above are still wired in, but they sit at the bottom of the chain now, not the top.
+
+</div>
+
+A few months of living with the eight-deep chain made one thing clear: most "default chat" turns did not need a different model, they needed a *reliable* one. Subscription-rate Sonnet through the CLI's OAuth tier matches Opus on structured-and-bounded work at roughly half the latency, and counts against a flat monthly fee I am already paying. So the four free-tier hosted models that used to sit at positions two through five (Kimi K2.5, GLM-5.1, Qwen3-Coder, NVIDIA NIM Nemotron) got demoted to the back of the chain, behind the subscription tiers. Gemini 2.5 Flash and Pro sit below them. Cerebras and Groq are still the very last resort.
+
+| Tier | What it is | Used for |
+|------|------------|----------|
+| Reasoning (rare, important) | Opus 4.7 max through subscription OAuth | Gmail triage, Hermes escalations, repair runs |
+| Default workhorse | Sonnet 4.6 max through subscription OAuth | DM thinking, group replies, scheduled crons |
+| Fallback hosted | Kimi K2.5, GLM-5.1, Qwen3-Coder, Nemotron via NIM | When the subscription tier rate-limits or errors |
+| Last resort | Gemini 2.5 Flash/Pro, Cerebras Qwen, Groq Llama | When everything paid above has refused |
+
+Two exclusions stayed off Sonnet on purpose. Hermes (the escalation surface my assistant routes through when a turn looks emotionally heavy or unfamiliar) stays on Opus 4.7 max because the cost of a tone-deaf reply there is higher than the cost of the extra latency. Gmail triage stays on Opus 4.7 max for the same reason: misclassifying an inbound from a hiring manager as a newsletter is the kind of mistake the slower model catches and the cheaper one does not. The rule is roughly "anything where a wrong reply embarrasses the person reading it stays on the heaviest model"; everything else is Sonnet by default.
+
+<blockquote class="pull-quote">
+
+When subscription inference catches the free tier on latency at frontier quality, the chain stops being a search and starts being a guard.
+
+</blockquote>
+
+The generalized lesson is about chains in general, not about which model won this month. A fallback chain whose top entry is a paid frontier model behaves very differently from one whose top entry is a free hosted one. With free at the top, the chain is exploratory: every cron is hunting for any backend that will reply. With subscription at the top, the chain is defensive: most days only the top entry runs, and the rest is a quiet insurance policy that exists for the half-hour a month when the primary provider has a bad incident. Same code, different posture. The hype around model launches will keep telling you which engine is fastest. The middleware question is whether your harness knows it has been upgraded.
