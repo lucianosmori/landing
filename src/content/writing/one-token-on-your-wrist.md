@@ -1,6 +1,6 @@
 ---
-title: "1 token on your wrist: a $40 Claude Max meter"
-description: "A $40 ESP32 smartwatch reads my Claude Max quota in real time. The trick is that the watch never talks to Claude. An OCI VM pings the API every five minutes with max_tokens 1, reads the quota out of the response headers, and pushes the result through Tailscale, an Android foreground service, and BLE to a wrist."
+title: "1 token on your wrist: a $40 Claude meter"
+description: "A $40 ESP32 smartwatch reads my Claude quota in real time. The trick is that the watch never talks to Claude. An OCI VM pings the API every five minutes with max_tokens 1, reads the quota out of the response headers, and pushes the result through Tailscale, an Android foreground service, and BLE to a wrist."
 pubDate: 2026-06-03
 tags: [clawdmeter, esp32, ble, tailscale, oci, claude, agentic, finops]
 draft: false
@@ -13,7 +13,7 @@ heroImageType: image/jpeg
 
 <figure class="hero-figure">
   <video src="/images/clawdmeter/watch-demo.mp4" poster="/images/clawdmeter/watch-demo-poster.jpg" autoplay muted loop playsinline width="720" height="720">
-    <img src="/images/clawdmeter/watch-demo.gif" alt="A short loop of the Waveshare smartwatch showing the Clawdmeter mascot reacting, then a finger tapping the screen and the face switching to a live green quota gauge reading the Claude Max five-hour window." />
+    <img src="/images/clawdmeter/watch-demo.gif" alt="A short loop of the Waveshare smartwatch showing the Clawdmeter mascot reacting, then a finger tapping the screen and the face switching to a live green quota gauge reading the Claude five-hour window." />
   </video>
   <figcaption>The watch reacts; the tap switches to the quota readout. Everything behind the glass is bookkeeping.</figcaption>
 </figure>
@@ -24,7 +24,7 @@ heroImageType: image/jpeg
 
 </blockquote>
 
-Three weeks of using a personal assistant on Claude Max made one habit visible: I kept opening a terminal to check whether my five-hour window was full. The dashboard exists. The information exists. The dashboard is just not where my eyes are at 11 a.m. when I am about to fire a long agent run that might burn through the rest of the window. The fix is not more inference. The fix is a glance.
+Three weeks of using a personal assistant on Claude made one habit visible: I kept opening a terminal to check whether my five-hour window was full. The dashboard exists. The information exists. The dashboard is just not where my eyes are at 11 a.m. when I am about to fire a long agent run that might burn through the rest of the window. The fix is not more inference. The fix is a glance.
 
 ## The watch doesn't run the AI
 
@@ -91,7 +91,7 @@ payload = {
 }
 ```
 
-Two hundred and eighty-eight tokens a day total, of the cheapest model on the menu. Mathematically negligible against a Claude Max subscription. The watch tells me what fraction of the 5-hour window is gone, what fraction of the rolling 7-day quota is gone, how many minutes until each resets, and the status code Anthropic itself is reporting. The body of the response, the actual `"Hi"` Haiku would have generated, is read and discarded.
+Two hundred and eighty-eight tokens a day total, of the cheapest model on the menu. Mathematically negligible against a Claude subscription. The watch tells me what fraction of the 5-hour window is gone, what fraction of the rolling 7-day quota is gone, how many minutes until each resets, and the status code Anthropic itself is reporting. The body of the response, the actual `"Hi"` Haiku would have generated, is read and discarded.
 
 <blockquote class="pull-quote">
 
