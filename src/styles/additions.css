@@ -437,7 +437,8 @@ body {
   padding: 0;
   text-align: center;
 }
-.prose .hero-figure img {
+.prose .hero-figure img,
+.prose .hero-figure video {
   display: inline-block;
   width: 100%;
   max-width: 560px;
@@ -452,7 +453,8 @@ body {
   text-align: center;
 }
 @media (max-width: 480px) {
-  .prose .hero-figure img { max-width: 96%; }
+  .prose .hero-figure img,
+  .prose .hero-figure video { max-width: 96%; }
 }
 
 /* Centered TL;DR quote that opens a piece, lighter weight than a normal
