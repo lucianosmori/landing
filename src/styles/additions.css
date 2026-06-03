@@ -214,7 +214,7 @@ body {
   color: var(--brand-green-dark);
 }
 [data-theme="dark"] .feed-icon { color: var(--brand-green-bright); }
-.feed-icon svg { width: 104px; height: 104px; opacity: .92; }
+.feed-icon svg { width: 130px; height: 130px; opacity: .92; }
 .feed-photo img {
   display: block;
   width: 100%;
