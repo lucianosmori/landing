@@ -17,6 +17,8 @@ const fmtMonth = (d: Date) =>
 const fmtDate = (d: Date) =>
   d.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 
+const firstSvg = (body?: string) => body?.match(/<svg[\s\S]*?<\/svg>/i)?.[0];
+
 // "Latest" section — each collection's newest item, ordered newest-first
 // (most recently dated card sits left on desktop / top on mobile).
 type LatestCard = {
@@ -28,6 +30,7 @@ type LatestCard = {
   cta: string;
   image?: string;
   imageAlt?: string;
+  svg?: string;
 };
 const latestCards: LatestCard[] = [];
 if (latestMonth) {
@@ -38,6 +41,7 @@ if (latestMonth) {
     meta: `Work Log · ${fmtMonth(latestMonth.data.monthStart)}`,
     title: latestMonth.data.title,
     cta: "Read the month",
+    svg: firstSvg(latestMonth.body),
   });
 }
 if (latestArticle?.data.heroImage) {
@@ -81,20 +85,7 @@ latestCards.sort((a, b) => b.date.getTime() - a.date.getTime());
                   <img src={card.image} alt={card.imageAlt} width="600" height="360" loading="lazy" decoding="async" />
                 </div>
               ) : (
-                <div class="latest-visual latest-icon">
-                  <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                    <line x1="40" y1="8" x2="40" y2="16" />
-                    <circle cx="40" cy="6" r="2" fill="currentColor" stroke="none" />
-                    <rect x="14" y="16" width="52" height="40" rx="8" />
-                    <circle cx="28" cy="32" r="3" fill="currentColor" stroke="none" />
-                    <circle cx="52" cy="32" r="3" fill="currentColor" stroke="none" />
-                    <rect x="26" y="44" width="28" height="4" rx="1" fill="currentColor" stroke="none" />
-                    <line x1="6" y1="34" x2="14" y2="34" />
-                    <line x1="66" y1="34" x2="74" y2="34" />
-                    <rect x="22" y="60" width="36" height="14" rx="2" />
-                    <line x1="40" y1="56" x2="40" y2="60" />
-                  </svg>
-                </div>
+                <div class="latest-visual latest-icon" set:html={card.svg ?? `<svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="40" y1="8" x2="40" y2="16" /><circle cx="40" cy="6" r="2" fill="currentColor" stroke="none" /><rect x="14" y="16" width="52" height="40" rx="8" /><circle cx="28" cy="32" r="3" fill="currentColor" stroke="none" /><circle cx="52" cy="32" r="3" fill="currentColor" stroke="none" /><rect x="26" y="44" width="28" height="4" rx="1" fill="currentColor" stroke="none" /><line x1="6" y1="34" x2="14" y2="34" /><line x1="66" y1="34" x2="74" y2="34" /><rect x="22" y="60" width="36" height="14" rx="2" /><line x1="40" y1="56" x2="40" y2="60" /></svg>`}></div>
               )}
               <div class="latest-body">
                 <p class="latest-meta">{card.meta}</p>
