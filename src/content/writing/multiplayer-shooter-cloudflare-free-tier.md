@@ -18,7 +18,7 @@ heroImageType: image/jpeg
 
 <blockquote class="lead-quote">
 
-**TL;DR.** [OpenClaw on Oracle Cloud](/writing/openclaw-on-oci-free-tier/) was the lesson "the leash is the product." The [town of $0 AI characters](/writing/holtwick-in-a-week/) was "the gate is the product." The [wrist meter](/writing/one-token-on-your-wrist/) was "the response headers are the product." This one is about a single Cloudflare primitive that quietly does a lot: the **Durable Object**. It let me build a browser multiplayer shooter where one little server keeps everyone honest, place that server at the edge, and pay exactly nothing while nobody is playing. You can shoot at yourself right now at [boxshoot.pages.dev](https://boxshoot.pages.dev/). The rest of this is what a Durable Object is, and what it sits on top of, and why that turned out to be the whole game.
+**TL;DR.** The fourth [$0-on-free-tiers](/writing/holtwick-in-a-week/) project, and the odd one out: no AI model behind the glass, just one Cloudflare primitive that does a surprising amount of work, the **Durable Object**. It let me build a browser multiplayer shooter where one small server keeps everyone honest, runs at the edge, and costs exactly nothing while nobody is playing. Shoot at yourself right now at [boxshoot.pages.dev](https://boxshoot.pages.dev/). The rest is what a Durable Object is, what it runs on, and why that turned out to be the whole game.
 
 </blockquote>
 

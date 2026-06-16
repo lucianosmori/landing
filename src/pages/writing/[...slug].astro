@@ -33,7 +33,7 @@ const formatted = article.data.pubDate.toLocaleDateString("en-CA", {
   ogImageHeight={article.data.heroImageHeight}
   ogImageType={article.data.heroImageType}
 >
-  <header class="page-header">
+  <header class="page-header article-header">
     <div class="container">
       <p class="section-eyebrow">Writing · {formatted}</p>
       <h1>{article.data.title}</h1>
@@ -41,7 +41,7 @@ const formatted = article.data.pubDate.toLocaleDateString("en-CA", {
     </div>
   </header>
 
-  <section class="section">
+  <section class="section article-section">
     <div class="container">
       <article class="prose">
         <Content />

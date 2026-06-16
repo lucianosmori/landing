@@ -60,6 +60,16 @@ body {
 }
 [data-theme="light"] .page-header p.lead { color: var(--ink-soft); }
 
+/* Article detail pages (/writing/<slug>): tighten the vertical rhythm at the
+   top so the title, subtitle, hero image and TL;DR sit closer together.
+   Scoped via .article-header / .article-section so other pages keep the
+   roomier default header + .section padding (88px). */
+.page-header.article-header { padding-bottom: 24px; }
+.page-header.article-header h1 { margin-bottom: 8px; }
+.section.article-section { padding-top: 32px; }
+.section.article-section .prose .hero-figure { margin-bottom: 1.05em; }
+.section.article-section .prose .lead-quote { margin-top: 0.3em; }
+
 /* Markdown article body */
 .prose {
   max-width: 760px;
